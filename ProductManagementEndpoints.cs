@@ -25,23 +25,16 @@ public class ProductManagementEndpoints
     public static async Task<IResult> SearchById(string id, ProductManagementDb db)
     {
         if (!int.TryParse(id, out int parsedId))
-            return BadRequest($"'{id}' is not a valid account Id");
+            return BadRequest($"'{id}' is not a valid ProductId");
 
         Product? product = await db.Products.FindAsync(parsedId);
 
         if (product == null)
-            return NotFound($"Product with ID '{parsedId}' was not found.");
+            return NotFound($"Product with ProductId '{parsedId}' was not found.");
 
         List<Product> productList = new();
         productList.Add(product);
-
-
-        //Product inputData = new()
-        //{
-        //    LastAccessedAt = DateTime.UtcNow,
-        //    LastAccessedBy = "_search_api"
-        //};
-        // updating accessed by and accessed at 
+        
         product.LastAccessedAt = DateTime.UtcNow;
         product.LastAccessedBy = "_search_api";
         await db.SaveChangesAsync();
@@ -97,4 +90,26 @@ public class ProductManagementEndpoints
 
         return Results.Ok("f");
     }
+
+
+    public static async Task<IResult> DeleteById
+        (string id, ProductManagementDb db)
+    {
+        if (!int.TryParse(id, out int parsedId))
+            return BadRequest($"'{id}' is not a valid ProductId");
+
+        Product? account = await db.Products.FindAsync(parsedId);
+
+        if (account == null)
+            return NotFound($"'{id}' is not a valid ProductId");
+
+        if (restrictedIds.Contains(parsedId))
+            return Forbidden($"ProductId '{id}' is restricted and cannot be deleted");
+
+        db.Products.Remove(account);
+        await db.SaveChangesAsync();
+
+        return DeleteSuccess();
+    }
+
 }

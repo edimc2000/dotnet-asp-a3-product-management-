@@ -28,7 +28,15 @@ namespace ProductManagement.Helper
         }
 
 
-
+        public static IResult DeleteSuccess()
+        {
+            return Results.Ok(
+                new
+                {
+                    success = true,
+                    message = "Product deleted successfully"
+                });
+        }
 
 
         //internal class DataValidation
@@ -77,6 +85,15 @@ namespace ProductManagement.Helper
                 success = false,
                 message = message
             });
+        }
+
+
+        public static IResult Forbidden(string message)
+        {
+            return Results.Json(
+                data: new { success = false, message = message },
+                statusCode: StatusCodes.Status403Forbidden
+            );
         }
 
 

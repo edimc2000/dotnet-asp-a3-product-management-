@@ -48,6 +48,7 @@ public class Program
         app.MapGet("/api/products/{id}",  SearchById);
 
         app.MapPost("/api/products/",  RegisterNewProduct);
+        app.MapDelete("/api/delete/{id}",  DeleteById);
 
     app.Run();
     }
