@@ -20,23 +20,32 @@ public partial class Product
 
     [Column("description", TypeName = "VARCHAR(100)")]
     [Required]
-    [StringLength(100, MinimumLength = 2, ErrorMessage = "Description must be at least 2 characters long")]
+    [StringLength(100,
+        MinimumLength = 2,
+        ErrorMessage = "Description must be at least 2 characters long")]
     public string Description { get; set; } = null!;
 
     [Column("price")]
     [Required]
-    [Range(1.0, 999999.0, ErrorMessage = "Price must be between 1 and 999,999")]
+    [Range(0, 999999.0, ErrorMessage = "Price must be between 0 and 999,999")]
     public double Price { get; set; }
+
 
     [Column("created_at", TypeName = "DATETIME")]
     public DateTime? CreatedAt { get; set; }
 
+    [Column("created_by", TypeName = "VARCHAR (100)")]
+    public string? CreatedBy { get; set; }
+
     [Column("updated_at", TypeName = "DATETIME")]
     public DateTime? UpdatedAt { get; set; }
+
+    [Column("updated_by", TypeName = "VARCHAR (100)")]
+    public string? UpdatedBy { get; set; }
 
     [Column("last_accessed_at", TypeName = "DATETIME")]
     public DateTime? LastAccessedAt { get; set; }
 
-    [Column("last_accessed_by", TypeName = "VARCHAR(100)")]
-    public string LastAccessedBy { get; set; } = null!;
+    [Column("last_accessed_by", TypeName = "VARCHAR (100)")]
+    public string? LastAccessedBy { get; set; }
 }

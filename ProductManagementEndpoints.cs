@@ -71,7 +71,7 @@ public class ProductManagementEndpoints
             Description = dataConverter?.description.ToString()?? string.Empty,
             Price = parsedId, 
             CreatedAt = DateTime.UtcNow,
-            LastAccessedBy = "_create_api"
+            CreatedBy = "_create_api"
         };
 
 
