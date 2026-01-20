@@ -45,11 +45,10 @@ public class Program
         app.MapGet("/error", () => "test error");
 
         app.MapGet("/api/products/", SearchAll);
-        app.MapGet("/api/products/{id}",
-            (string id, ProductManagementDb db) =>
-            {
-                return SearchById(id, db);
-            });
-        app.Run();
+        app.MapGet("/api/products/{id}",  SearchById);
+
+        app.MapPost("/api/products/",  RegisterNewProduct);
+
+    app.Run();
     }
 }

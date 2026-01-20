@@ -1,9 +1,45 @@
-﻿namespace ProductManagement.Helper
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
+
+namespace ProductManagement.Helper
 {
-    public class Helper
+    internal partial class Helper
     {
 
-        /// <summary>Returns successful all accounts response.</summary>
+        /// <summary>Converts JSON elements to account input data properties.</summary>
+        internal class InputDataConverter
+        {
+      
+            public JsonElement name { get; set; }
+
+     
+            public JsonElement description { get; set; }
+
+
+            public JsonElement price { get; set; }
+        }
+
+
+
+
+
+        //internal class DataValidation
+        //{
+        //    [Required]
+        //    [StringLength(100, MinimumLength = 2, ErrorMessage = "Description must be at least 2 characters long")]
+        //    public string name { get; set; }
+
+        //    [Required]
+        //    [StringLength(100, MinimumLength = 2, ErrorMessage = "Description must be at least 2 characters long")]
+        //    public string description { get; set; }
+
+        //    [Required]
+        //    [Range(1.0, 999999.0, ErrorMessage = "Price must be between 1 and 999,999")]
+        //    public double price { get; set; }
+        //}
+
+        /// <summary>
+        /// Returns successful all accounts response.</summary>
         /// <param name="accountList">The list of Account objects to return in the response.</param>
         /// <returns>An IResult containing the success response with account data.</returns>
         public static IResult SearchSuccess(List<Product> productList)
@@ -44,5 +80,37 @@
                 message = message
             });
         }
+
+
+        public static IResult UnprocessableEntity(string message)
+        {
+            return Results.UnprocessableEntity(new
+            {
+                success = false,
+                message = $"{message}"
+            });
+        }
     }
 }
+
+
+
+// ***** below is to read the key:value from body - json content 
+//using StreamReader reader = new(context.Request.Body);
+//string jsonString = await reader.ReadToEndAsync();
+
+//using JsonDocument jsonDoc = JsonDocument.Parse(jsonString);
+//JsonElement root = jsonDoc.RootElement;
+
+//// Get keys from JSON object
+//List<string> keys = root.EnumerateObject()
+//    .Select(p => p.Name)
+//    .ToList();
+
+//List<JsonElement> values = root.EnumerateObject()
+//    .Select(p => p.Value)
+//    .ToList();
+
+
+//WriteLine($" ****************** keys: {string.Join(", ", keys)} ");
+//WriteLine($" ****************** values: {string.Join(", ", values)} ");

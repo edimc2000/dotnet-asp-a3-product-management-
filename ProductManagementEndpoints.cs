@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using static ProductManagement.Helper.Helper;
 
 
@@ -24,14 +27,56 @@ public class ProductManagementEndpoints
         if (!int.TryParse(id, out int parsedId))
             return BadRequest($"'{id}' is not a valid account Id");
 
-        Product ? product = await db.Products.FindAsync(parsedId);
+        Product? product = await db.Products.FindAsync(parsedId);
 
         if (product == null)
             return NotFound($"Product with ID '{parsedId}' was not found.");
 
-        List<Product> productList = new List<Product>();
+        List<Product> productList = new();
         productList.Add(product);
-        
+
         return SearchSuccess(productList);
+    }
+
+
+    public static async Task<IResult> RegisterNewProduct
+        (HttpContext context, ProductManagementDb db)
+    {
+        (InputDataConverter? dataConverter, IResult? error) =
+            await TryReadJsonBodyAsync<InputDataConverter>(context.Request);
+
+        if (error != null)
+            return error;
+
+
+        if (!double.TryParse(dataConverter?.price.ToString(), out double parsedId))
+            return BadRequest($"'{dataConverter?.price.ToString()}' is not a valid amount");
+
+        Product data = new()
+        {
+            Name = dataConverter? .name.ToString() ?? string.Empty,
+            Description = dataConverter?.description.ToString()?? string.Empty,
+            Price = parsedId
+        };
+
+
+        ValidationContext validationContext = new(data);
+        List<ValidationResult> validationResults = new();
+        bool isValid = Validator.TryValidateObject(data,
+            validationContext,
+            validationResults,
+            true);
+
+        if (!isValid)
+        {
+            WriteLine(" -----> validation NOT ok ");
+            string errors = string.Join(". ",
+                validationResults.Select(r => r.ErrorMessage));
+            return BadRequest($"Validation Error: {errors}.");
+        }
+
+        WriteLine(" -----> validation ok ");
+
+        return Results.Ok("f");
     }
 }
