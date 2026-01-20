@@ -353,3 +353,5 @@ FodyWeavers.xsd
 /database/account.db-shm
 /database/account.db-wal
 /database/accountzzz.db
+/Database/product_management.db-shm
+/Database/product_management.db-wal
