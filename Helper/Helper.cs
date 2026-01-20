@@ -1,10 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
 namespace ProductManagement.Helper
 {
     internal partial class Helper
     {
+
+
+
+        /// <summary>Array of restricted account IDs that cannot be modified or deleted.</summary>
+        internal static readonly int[] restrictedIds = { 101, 102, 103 };
+
+
 
         /// <summary>Converts JSON elements to account input data properties.</summary>
         internal class InputDataConverter
@@ -89,6 +97,20 @@ namespace ProductManagement.Helper
                 success = false,
                 message = $"{message}"
             });
+        }
+
+
+
+        public static void timeUpdate( ProductManagementDb db, string id)
+        {
+
+        }
+
+        public static int GetNewProductIdNumber( ProductManagementDb db)
+        {
+            return  db.Products
+                .AsNoTracking()
+                .Max(account => (account.ProductId)) + 1;      
         }
     }
 }

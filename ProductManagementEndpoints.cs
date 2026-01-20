@@ -35,6 +35,18 @@ public class ProductManagementEndpoints
         List<Product> productList = new();
         productList.Add(product);
 
+
+        //Product inputData = new()
+        //{
+        //    LastAccessedAt = DateTime.UtcNow,
+        //    LastAccessedBy = "_search_api"
+        //};
+        // updating accessed by and accessed at 
+        product.LastAccessedAt = DateTime.UtcNow;
+        product.LastAccessedBy = "_search_api";
+        await db.SaveChangesAsync();
+
+
         return SearchSuccess(productList);
     }
 
@@ -52,17 +64,20 @@ public class ProductManagementEndpoints
         if (!double.TryParse(dataConverter?.price.ToString(), out double parsedId))
             return BadRequest($"'{dataConverter?.price.ToString()}' is not a valid amount");
 
-        Product data = new()
+        Product inputData = new()
         {
+            ProductId = GetNewProductIdNumber(db),
             Name = dataConverter? .name.ToString() ?? string.Empty,
             Description = dataConverter?.description.ToString()?? string.Empty,
-            Price = parsedId
+            Price = parsedId, 
+            CreatedAt = DateTime.UtcNow,
+            LastAccessedBy = "_create_api"
         };
 
 
-        ValidationContext validationContext = new(data);
+        ValidationContext validationContext = new(inputData);
         List<ValidationResult> validationResults = new();
-        bool isValid = Validator.TryValidateObject(data,
+        bool isValid = Validator.TryValidateObject(inputData,
             validationContext,
             validationResults,
             true);
@@ -76,6 +91,9 @@ public class ProductManagementEndpoints
         }
 
         WriteLine(" -----> validation ok ");
+
+        db.Add(inputData);
+        await db.SaveChangesAsync();
 
         return Results.Ok("f");
     }
