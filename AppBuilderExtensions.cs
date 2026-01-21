@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using ProductManagement.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ProductManagement;
 
@@ -13,7 +12,9 @@ public static class AppBuilderExtensions
                 options.UseSqlite("Data Source=./Database/account.db"),
             ServiceLifetime.Scoped); // Each request gets its own instance
 
-
+        builder.Services.AddAuthentication()
+            .AddJwtBearer();
+        builder.Services.AddAuthorization();
 
 
 

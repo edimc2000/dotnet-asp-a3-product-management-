@@ -18,6 +18,8 @@ public class Program
         WebApplication app = builder.Build();
 
         app.UseStaticFiles();
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         using (IServiceScope scope = app.Services.CreateScope())
         {
@@ -36,19 +38,21 @@ public class Program
         else
         {
             app.UseExceptionHandler("/Error");
-            // The default HSTS value is 30 days. You may want to change this for production
-            // scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts();
         }
-
-
         app.MapGet("/error", () => "test error");
 
-        app.MapGet("/api/products/", SearchAll);
-        app.MapGet("/api/products/{id}",  SearchById);
+        app.MapGet("/api/products/", SearchAll)
+            .RequireAuthorization();
 
-        app.MapPost("/api/products/",  RegisterNewProduct);
-        app.MapDelete("/api/delete/{id}",  DeleteById);
+        app.MapGet("/api/products/{id}",  SearchById)
+            .WithName("GetAccountById")
+            .RequireAuthorization();
+
+        app.MapPost("/api/products/",  RegisterNewProduct)
+            .RequireAuthorization();
+        
+        app.MapDelete("/api/delete/{id}",  DeleteById)
+            .RequireAuthorization();
 
     app.Run();
     }

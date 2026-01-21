@@ -6,14 +6,9 @@ namespace ProductManagement.Helper
 {
     internal partial class Helper
     {
-
-
-
         /// <summary>Array of restricted account IDs that cannot be modified or deleted.</summary>
         internal static readonly int[] restrictedIds = { 101, 102, 103 };
-
-
-
+        
         /// <summary>Converts JSON elements to account input data properties.</summary>
         internal class InputDataConverter
         {
@@ -116,11 +111,16 @@ namespace ProductManagement.Helper
             });
         }
 
-
-
-        public static void timeUpdate( ProductManagementDb db, string id)
+        public static IResult CreateSuccess(Product newProduct, int newIdNumber)
         {
-
+            return Results.CreatedAtRoute("GetAccountById",
+                new { id = newIdNumber },
+                new
+                {
+                    success = true,
+                    message = "Product created successfully",
+                    data = newProduct
+                });
         }
 
         public static int GetNewProductIdNumber( ProductManagementDb db)

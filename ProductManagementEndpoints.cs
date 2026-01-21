@@ -30,7 +30,7 @@ public class ProductManagementEndpoints
         Product? product = await db.Products.FindAsync(parsedId);
 
         if (product == null)
-            return NotFound($"Product with ProductId '{parsedId}' was not found.");
+            return NotFound($"ProductId '{parsedId}' was not found.");
 
         List<Product> productList = new();
         productList.Add(product);
@@ -52,8 +52,7 @@ public class ProductManagementEndpoints
 
         if (error != null)
             return error;
-
-
+        
         if (!double.TryParse(dataConverter?.price.ToString(), out double parsedId))
             return BadRequest($"'{dataConverter?.price.ToString()}' is not a valid amount");
 
@@ -78,9 +77,9 @@ public class ProductManagementEndpoints
         if (!isValid)
         {
             WriteLine(" -----> validation NOT ok ");
-            string errors = string.Join(". ",
+            string errors = string.Join("; ",
                 validationResults.Select(r => r.ErrorMessage));
-            return BadRequest($"Validation Error: {errors}.");
+            return BadRequest($"Validation Error: {errors}");
         }
 
         WriteLine(" -----> validation ok ");
@@ -88,7 +87,7 @@ public class ProductManagementEndpoints
         db.Add(inputData);
         await db.SaveChangesAsync();
 
-        return Results.Ok("f");
+        return CreateSuccess(inputData, inputData.ProductId);
     }
 
 

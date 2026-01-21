@@ -15,14 +15,14 @@ public partial class Product
 
     [Column("name", TypeName = "VARCHAR(100)")]
     [Required]
-    [StringLength(100, MinimumLength = 2, ErrorMessage = "Name must be at least 2 characters long")]
+    [StringLength(100, MinimumLength = 2, ErrorMessage = "Name must be between 1 and 101 characters long")]
     public string Name { get; set; } = null!;
 
     [Column("description", TypeName = "VARCHAR(100)")]
     [Required]
     [StringLength(100,
         MinimumLength = 2,
-        ErrorMessage = "Description must be at least 2 characters long")]
+        ErrorMessage = "Description must be between 1 and 101 characters long")]
     public string Description { get; set; } = null!;
 
     [Column("price")]
