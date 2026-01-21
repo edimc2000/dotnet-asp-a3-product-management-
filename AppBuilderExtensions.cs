@@ -2,24 +2,31 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using ProductManagement.Models;
+using ProductManagement.Auth;
 
 namespace ProductManagement;
 
 public static class AppBuilderExtensions
 {
-    public static void ConfigureAuthenticationAndAuthorization
+    public static void ConfigureDb
         (this WebApplicationBuilder builder)
-    //(this WebApplicationBuilder builder, JwtSettings jwtSettings)
+
     {
         builder.Services.AddDbContext<ProductManagementDb>(options =>
                 options.UseSqlite("Data Source=./Database/account.db"),
             ServiceLifetime.Scoped); // Each request gets its own instance
+    }
 
+
+
+
+    public static JwtSettings ConfigureAuth
+        ( this WebApplicationBuilder builder)
+    {
 
         // Configure JWT Settings
-        var jwtSettings = new JwtSettings();
-        
+        JwtSettings jwtSettings = new();
+
         builder.Services.AddSingleton(jwtSettings);
 
 // Add Services
@@ -42,13 +49,14 @@ public static class AppBuilderExtensions
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = jwtSettings.Issuer,
                     ValidAudience = jwtSettings.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+                    IssuerSigningKey =
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
                     ClockSkew = TimeSpan.Zero
                 };
             });
 
         builder.Services.AddAuthorization();
 
-
+        return jwtSettings;
     }
 }

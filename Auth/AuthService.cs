@@ -1,4 +1,4 @@
-﻿namespace ProductManagement.Models
+﻿namespace ProductManagement.Auth
 {
     public interface IAuthService
     {

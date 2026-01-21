@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 //using ProductManagement.Models;
 
-namespace ProductManagement.Models
+namespace ProductManagement.Auth
 {
     public class TokenService : ITokenService
     {

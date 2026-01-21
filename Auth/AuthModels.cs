@@ -1,4 +1,4 @@
-﻿namespace ProductManagement.Models
+﻿namespace ProductManagement.Auth
 {
 
         public record LoginRequest(string Username, string Password);
@@ -16,7 +16,7 @@
             public string Key { get; set; } = "super-secret-key-minimum-32-characters-long-here";
             public string Issuer { get; set; } = "minimal-api";
             public string Audience { get; set; } = "api-users";
-            public int ExpiryInMinutes { get; set; } = 60;
+            public int ExpiryInMinutes { get; set; } = 120;
         }
  
         public interface ITokenService
