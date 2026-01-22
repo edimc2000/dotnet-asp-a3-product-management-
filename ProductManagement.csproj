@@ -34,7 +34,7 @@
 		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.0.1" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
 
-		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+		
 	</ItemGroup>
 
 	<ItemGroup>
