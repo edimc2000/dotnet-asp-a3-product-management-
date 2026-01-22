@@ -1,0 +1,35 @@
+﻿h2{
+    padding-top: 2rem;
+}
+
+
+.token-pre {
+    font-family: "Google Sans Code", monospace !important;
+}
+
+/* Wrap tokens after approx 100 characters. Uses ch unit (approx width of '0'). */
+.token-pre {
+    max-width: 145ch;
+    white-space: pre-wrap; /* allow wrapping */
+    word-break: break-word; /* force break within long words */
+    overflow-wrap: anywhere;
+    background: #f8f9fa;
+    padding: .1rem;
+    border-radius: .25rem;
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+}
+
+.valid-pre {
+    background: #fffbea;
+    padding: .1rem;
+    border-radius: .25rem;
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    white-space: pre-wrap;
+}
+
+/* Small layout tweaks for the buttons column */
+.table td > .d-flex > div {
+    min-width: 5rem;
+}
