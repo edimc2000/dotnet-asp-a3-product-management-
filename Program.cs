@@ -35,9 +35,7 @@ public class Program
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.MapStaticAssets();
-        app.MapRazorPages()
-            .WithStaticAssets();
+        app.MapRazorPages();
 
 
         //This ensures your database is ready with migrations
