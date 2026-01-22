@@ -1,8 +1,11 @@
 ﻿main {
     font-family: "TikTok Sans", sans-serif;
+    font-size: 0.85rem;
+    color: black; 
 }
 
-.title{
+h1{
+    padding-top: 2rem;
     font-size: 2rem; 
     color:lightgrey;
 }
@@ -79,7 +82,7 @@
     .method-header .path-url {
         font-family: "Google Sans Code", monospace;
         font-size: 1.5rem;
-        color: black;
+        color: royalblue;
         font-weight: 500;
         flex-grow: 1;
         min-width: 0;
@@ -311,9 +314,10 @@
 }
 
 .response-description {
-    font-weight: 500;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5rem !important;
+/*    font-weight: 500;*/
     color: #333;
-    font-size: 0.95rem;
 }
 
 /* Status Code Colors */
@@ -512,3 +516,24 @@
         .controls #collapse-all:hover {
             background: #5a6268;
         }
+
+
+
+[class*=status] {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5rem !important;
+}
+
+
+
+    [class*=example] > strong {
+        color: gray !important;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.85rem !important;
+    }
+
+    [class$=details] > [class$=section] > strong {
+        color: black !important;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.85rem !important;
+    }
