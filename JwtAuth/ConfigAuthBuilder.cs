@@ -2,21 +2,35 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
 using ProductManagement.JwtAuth;
+using ProductManagement.Data;
 
 namespace ProductManagement.JwtAuth;
 
 public static class AppBuilderAuth
 {
-    public static JwtSettings ConfigureAuth
-        ( this WebApplicationBuilder builder)
+    public static JwtSettings ConfigureAuth(this WebApplicationBuilder builder)
     {
-
         // Configure JWT Settings
         JwtSettings jwtSettings = new();
         builder.Services.AddSingleton(jwtSettings);
 
-        // Add Services
+        // Register Identity DbContext and Identity services so UserManager/SignInManager are available
+        // Use a separate SQLite file for identity tables (adjust path as needed)
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlite("Data Source=./Database/identity.db"));
+
+        // Registers UserManager<IdentityUser>, SignInManager<IdentityUser>, RoleManager<IdentityRole>, etc.
+        builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                // adjust password / lockout options if needed
+            })
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+
+        // Add Services for JWT token generation / auth logic
         builder.Services.AddSingleton<ITokenService, TokenService>();
         builder.Services.AddSingleton<IAuthService, AuthService>();
 
@@ -42,27 +56,21 @@ public static class AppBuilderAuth
                 };
             });
 
-        //builder.Services.AddAuthorization();
-        // granular readonly and read/write privilege 
-
+        // authorization policies
         builder.Services.AddAuthorization(options =>
         {
-            // Policy for read-only access (Users)
             options.AddPolicy("ReadOnly", policy =>
-                policy.RequireRole("User", "Admin")); // Both users and admins can read
-            
-            // Policy for read-write access (Admins only)
+                policy.RequireRole("User", "Admin"));
+
             options.AddPolicy("ReadWrite", policy =>
                 policy.RequireRole("Admin"));
-            
-            // Or you can have separate policies
+
             options.AddPolicy("User", policy =>
                 policy.RequireRole("User"));
-                
+
             options.AddPolicy("Admin", policy =>
                 policy.RequireRole("Admin"));
         });
-
 
         return jwtSettings;
     }

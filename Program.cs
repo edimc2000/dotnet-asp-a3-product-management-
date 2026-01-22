@@ -20,18 +20,29 @@ public class Program
 
         // Add services to the container - authentication / authorization
         JwtSettings jwtSettings = builder.ConfigureAuth(); 
+
+        // Add razor pages 
+        builder.ConfigureRazor();
         
         WebApplication app = builder.Build();
         
-        app.UseStaticFiles();
+        // Standard middleware ordering:
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();      // enable wwwroot static assets
+        app.UseRouting();          // MUST come before authentication/authorization
         app.UseAuthentication();
         app.UseAuthorization();
+
+        app.MapStaticAssets();
+        app.MapRazorPages()
+            .WithStaticAssets();
 
 
         //This ensures your database is ready with migrations
         //applied and optimized for SQLite before your app starts handling requests
         app.ApplyDatabaseMigrations();
         
+
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
@@ -54,8 +65,6 @@ public class Program
 
         app.MapPost("/api/products/", RegisterNewProduct)
             .RequireAuthorization("ReadWrite");
-            //.RequireAuthorization();
-            //.RequireAuthorization(policy => policy.RequireRole("User", "Admin")); 
 
         app.MapDelete("/api/delete/{id}", DeleteById)
             .RequireAuthorization();
