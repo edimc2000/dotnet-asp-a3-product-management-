@@ -1,4 +1,4 @@
-﻿namespace ProductManagement.Auth
+﻿namespace ProductManagement.JwtAuth
 {
     public interface IAuthService
     {

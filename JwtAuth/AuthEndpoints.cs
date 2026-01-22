@@ -1,7 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace ProductManagement.Auth;
+
+namespace ProductManagement.JwtAuth;
 
 public class AuthEndpoints
 {

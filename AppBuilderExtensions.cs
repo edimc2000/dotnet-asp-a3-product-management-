@@ -6,10 +6,9 @@ using ProductManagement.Auth;
 
 namespace ProductManagement;
 
-public static class AppBuilderExtensions
+public static class AppBuilderDb
 {
-    public static void ConfigureDb
-        (this WebApplicationBuilder builder)
+    public static void ConfigureDb (this WebApplicationBuilder builder)
 
     {
         builder.Services.AddDbContext<ProductManagementDb>(options =>
@@ -17,46 +16,4 @@ public static class AppBuilderExtensions
             ServiceLifetime.Scoped); // Each request gets its own instance
     }
 
-
-
-
-    public static JwtSettings ConfigureAuth
-        ( this WebApplicationBuilder builder)
-    {
-
-        // Configure JWT Settings
-        JwtSettings jwtSettings = new();
-
-        builder.Services.AddSingleton(jwtSettings);
-
-// Add Services
-        builder.Services.AddSingleton<ITokenService, TokenService>();
-        builder.Services.AddSingleton<IAuthService, AuthService>();
-
-        // Configure Authentication
-        builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtSettings.Issuer,
-                    ValidAudience = jwtSettings.Audience,
-                    IssuerSigningKey =
-                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
-                    ClockSkew = TimeSpan.Zero
-                };
-            });
-
-        builder.Services.AddAuthorization();
-
-        return jwtSettings;
-    }
 }

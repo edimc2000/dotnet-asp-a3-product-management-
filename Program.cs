@@ -4,8 +4,9 @@ using static ProductManagement.ProductManagementEndpoints;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity.Data;
-using ProductManagement.Auth;
-using static ProductManagement.Auth.ConfigAuthBuilder;
+using ProductManagement.JwtAuth;
+using ProductManagement.Helper;
+
 namespace ProductManagement;
 
 public class Program
@@ -14,37 +15,34 @@ public class Program
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
+        // Add services to the container - database
         builder.ConfigureDb();
-        //builder.ConfigureAuth();
-        JwtSettings jwtSettings = builder.ConfigureAuth();
 
-        //builder.  this is to go with the conffig Aith 2 builder in addition to and make this program mode modular
-            
-
-
-
+        // Add services to the container - authentication / authorization
+        JwtSettings jwtSettings = builder.ConfigureAuth(); 
+        
         WebApplication app = builder.Build();
-
-
+        
         app.UseStaticFiles();
         app.UseAuthentication();
         app.UseAuthorization();
 
-        using (IServiceScope scope = app.Services.CreateScope())
-        {
-            ProductManagementDb
-                db = scope.ServiceProvider.GetRequiredService<ProductManagementDb>();
-            db.Database.Migrate(); // Apply any pending migrations
 
-            db.Database.ExecuteSqlRaw("PRAGMA journal_mode = WAL;"); // Enable WAL
-        }
+        //This ensures your database is ready with migrations
+        //applied and optimized for SQLite before your app starts handling requests
+        app.ApplyDatabaseMigrations();
+        
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
+        {
             app.UseMigrationsEndPoint();
+            app.UseDeveloperExceptionPage();
+        }
         else
             app.UseExceptionHandler("/Error");
+
+
         app.MapGet("/error", () => "test error");
 
         app.MapGet("/api/products/", SearchAll)
