@@ -1,5 +1,5 @@
 ﻿// Configuration variable - set default state (true = expanded, false = collapsed)
-const DEFAULT_EXPAND_STATE = true; // Change to true if you want expanded by default
+const DEFAULT_EXPAND_STATE = false; // Change to true if you want expanded by default
 
 document.addEventListener('DOMContentLoaded', async function () {
     console.log('Starting to read OpenAPI JSON...');
