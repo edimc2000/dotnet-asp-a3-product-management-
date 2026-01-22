@@ -1,0 +1,178 @@
+﻿@page
+@model ProductManagement.Pages.DevTokenModel
+@{
+    ViewData["Title"] = "Dev Tokens";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="width:20%">Description</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Row 1: Admin token validity (derived from admin token) -->
+        <tr>
+            <td>Admin token validity</td>
+            <td>
+                <div class="d-flex align-items-start gap-2">
+                    <pre id="adminValidity" class="valid-pre mb-0">n/a</pre>
+                </div>
+            </td>
+        </tr>
+
+        <!-- Row 2: Admin token from /auth/login -->
+        <tr>
+            <td>Admin token (from API)</td>
+            <td>
+                <div class="d-flex align-items-start gap-2">
+                    <button class="btn btn-sm btn-outline-secondary" onclick="copyFromId('adminApi')">Copy</button>
+                    <pre id="adminApi" class="token-pre mb-0">Loading...</pre>
+                </div>
+            </td>
+        </tr>
+
+        <!-- Row 3: User token validity (derived from user token) -->
+        <tr>
+            <td>User token validity</td>
+            <td>
+                <div class="d-flex align-items-start gap-2">
+                    <pre id="userValidity" class="valid-pre mb-0">n/a</pre>
+                </div>
+            </td>
+        </tr>
+
+        <!-- Row 4: User token from /auth/login -->
+        <tr>
+            <td>User token (from API)</td>
+            <td>
+                <div class="d-flex align-items-start gap-2">
+                    <button class="btn btn-sm btn-outline-secondary" onclick="copyFromId('userApi')">Copy</button>
+                    <pre id="userApi" class="token-pre mb-0">Loading...</pre>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        // Developer credentials used for POST to /auth/login.
+        // These are present in the file already; update if your dev users differ.
+        const adminCreds = { Username: "admin", Password: "admin123" };
+        const userCreds = { Username: "user", Password: "user123" };
+
+        function base64UrlDecode(input) {
+            input = input.replace(/-/g, '+').replace(/_/g, '/');
+            const pad = input.length % 4;
+            if (pad) input += '='.repeat(4 - pad);
+            try {
+                const decoded = atob(input);
+                return decodeURIComponent(Array.prototype.map.call(decoded, c =>
+                    '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+                ).join(''));
+            } catch {
+                return null;
+            }
+        }
+
+        function getTokenExpiryString(token) {
+            if (!token) return 'n/a';
+            const parts = token.split('.');
+            if (parts.length < 2) return 'invalid token';
+            const payload = base64UrlDecode(parts[1]);
+            if (!payload) return 'invalid token payload';
+            try {
+                const obj = JSON.parse(payload);
+                const exp = obj?.exp;
+                if (!exp) return 'no exp claim';
+                const dt = new Date(exp * 1000);
+                return `${dt.toLocaleString()} (local) — expires in ${formatRemaining(dt)}`;
+            } catch {
+                return 'invalid JSON payload';
+            }
+        }
+
+        function formatRemaining(expiryDate) {
+            const now = new Date();
+            const diffMs = expiryDate - now;
+            if (diffMs <= 0) return 'expired';
+            const secs = Math.floor(diffMs / 1000);
+            const mins = Math.floor(secs / 60);
+            const hrs = Math.floor(mins / 60);
+            const days = Math.floor(hrs / 24);
+            if (days > 0) return `${days}d ${hrs % 24}h`;
+            if (hrs > 0) return `${hrs}h ${mins % 60}m`;
+            if (mins > 0) return `${mins}m ${secs % 60}s`;
+            return `${secs}s`;
+        }
+
+        async function fetchToken(creds, targetId, errorId, validityId) {
+            const targetPre = document.getElementById(targetId);
+            const errSpan = document.getElementById(errorId);
+            const validPre = document.getElementById(validityId);
+            if (errSpan) errSpan.textContent = "";
+            if (validPre) validPre.textContent = "n/a";
+
+            try {
+                if (targetPre) targetPre.textContent = "Requesting...";
+                const resp = await fetch("/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(creds)
+                });
+
+                if (!resp.ok) {
+                    const txt = await resp.text();
+                    if (targetPre) targetPre.textContent = `HTTP ${resp.status} - ${txt}`;
+                    return;
+                }
+
+                const json = await resp.json();
+                const token = json?.token ?? json?.Token ?? null;
+                if (token) {
+                    if (targetPre) targetPre.textContent = token;
+                    if (validPre) validPre.textContent = getTokenExpiryString(token);
+                } else {
+                    if (targetPre) targetPre.textContent = JSON.stringify(json, null, 2);
+                    if (validPre) validPre.textContent = 'n/a';
+                }
+            } catch (err) {
+                if (errSpan) errSpan.textContent = err?.message ?? String(err);
+                if (targetPre) targetPre.textContent = "Error";
+            }
+        }
+
+        function copyFromId(elementId) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const text = el.textContent ?? "";
+            if (!navigator.clipboard) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try { document.execCommand('copy'); } catch { }
+                document.body.removeChild(textarea);
+                alert("Copied to clipboard");
+                return;
+            }
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    const old = el.style.backgroundColor;
+                    el.style.backgroundColor = "#e6ffe6";
+                    setTimeout(() => el.style.backgroundColor = old, 400);
+                })
+                .catch(e => alert("Copy failed: " + (e?.message ?? e)));
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Auto-fetch tokens on load (buttons removed per request)
+            fetchToken(adminCreds, "adminApi", "adminError", "adminValidity");
+            fetchToken(userCreds, "userApi", "userError", "userValidity");
+        });
+    </script>
+}
