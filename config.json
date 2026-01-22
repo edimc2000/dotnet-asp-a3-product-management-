@@ -1,0 +1,8 @@
+{
+  "Jwt": {
+    "Key": "your-secret-key-minimum-32-characters-long-here",
+    "Issuer": "your-app-issuer",
+    "Audience": "your-app-audience",
+    "TokenExpiryInMinutes": 60
+  }
+}
