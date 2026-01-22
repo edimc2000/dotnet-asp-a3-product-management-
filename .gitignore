@@ -355,3 +355,5 @@ FodyWeavers.xsd
 /database/accountzzz.db
 /Database/product_management.db-shm
 /Database/product_management.db-wal
+/wwwroot/doc_json/swagger - Copy (2).json
+/wwwroot/js/readAndDisplay - Copy.js
