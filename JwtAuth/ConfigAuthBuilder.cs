@@ -42,7 +42,27 @@ public static class AppBuilderAuth
                 };
             });
 
-        builder.Services.AddAuthorization();
+        //builder.Services.AddAuthorization();
+        // granular readonly and read/write privilege 
+
+        builder.Services.AddAuthorization(options =>
+        {
+            // Policy for read-only access (Users)
+            options.AddPolicy("ReadOnly", policy =>
+                policy.RequireRole("User", "Admin")); // Both users and admins can read
+            
+            // Policy for read-write access (Admins only)
+            options.AddPolicy("ReadWrite", policy =>
+                policy.RequireRole("Admin"));
+            
+            // Or you can have separate policies
+            options.AddPolicy("User", policy =>
+                policy.RequireRole("User"));
+                
+            options.AddPolicy("Admin", policy =>
+                policy.RequireRole("Admin"));
+        });
+
 
         return jwtSettings;
     }

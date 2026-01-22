@@ -53,7 +53,9 @@ public class Program
             .RequireAuthorization();
 
         app.MapPost("/api/products/", RegisterNewProduct)
-            .RequireAuthorization();
+            .RequireAuthorization("ReadWrite");
+            //.RequireAuthorization();
+            //.RequireAuthorization(policy => policy.RequireRole("User", "Admin")); 
 
         app.MapDelete("/api/delete/{id}", DeleteById)
             .RequireAuthorization();

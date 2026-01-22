@@ -1,8 +1,4 @@
-﻿using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using ProductManagement.Auth;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ProductManagement;
 
