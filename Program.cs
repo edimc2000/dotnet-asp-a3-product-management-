@@ -50,14 +50,6 @@ public class Program
         //This ensures your database is ready with migrations
         //applied and optimized for SQLite before your app starts handling requests
         app.ApplyDatabaseMigrations();
-        
-        // debugging *******************************************
-        var lat = builder.Configuration
-            .GetSection("MapSettings")["test:toys"];
-
-
-        WriteLine($"CONFIG ---------------- {lat}");
-        //*******************************************
 
 
 
