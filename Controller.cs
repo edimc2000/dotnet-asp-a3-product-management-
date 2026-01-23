@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using ProductManagement.JwtAuth;
 
 namespace ProductManagement
 {
@@ -49,7 +51,43 @@ namespace ProductManagement
             WriteLine($"--- this is on the controller delete");
             return await ProductManagementEndpoints.DeleteById(id, _db);
         }
+    }
 
+
+    // extras for testing and development purposes 
+    [ApiController]
+    [Route("auth")] // Direct route mapping
+    public class AuthController : ControllerBase
+    {
+        private readonly ITokenService _tokenService;
+        private readonly IAuthService _authService;
+        private readonly JwtSettings _jwtSettings;
+
+        public AuthController(
+            ITokenService tokenService,
+            IAuthService authService,
+            IOptions<JwtSettings> jwtSettings)
+        {
+            _tokenService = tokenService;
+            _authService = authService;
+            _jwtSettings = jwtSettings.Value;  // Note: .Value is used here
+        }
+
+        [HttpPost("login")]
+        public async Task<IResult> GetValidToken(LoginRequest request)
+        {
+            WriteLine($"--- get token controller test ");
+            return AuthEndpoints.GetValidToken(request, _tokenService, _authService, _jwtSettings);
+        }
+     
+
+        [HttpGet("validate-token")]
+        [Authorize]
+        public async Task<IResult> GetTokenValidity()
+        {
+            WriteLine($"--- get token validity controller test ");
+            return AuthEndpoints.GetTokenValidity(HttpContext);
+        }
     }
 
 

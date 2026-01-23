@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using ProductManagement.JwtAuth;
 using ProductManagement.Data;
 
+
 namespace ProductManagement.JwtAuth;
 
 public static class AppBuilderAuth
@@ -18,6 +19,7 @@ public static class AppBuilderAuth
 
         // Register Identity DbContext and Identity services so UserManager/SignInManager are available
         // Use a separate SQLite file for identity tables (adjust path as needed)
+        // this is for storing/reading users to/from a db ==> future development
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlite("Data Source=./Database/identity.db"));
 

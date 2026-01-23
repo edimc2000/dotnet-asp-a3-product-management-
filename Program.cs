@@ -71,6 +71,8 @@ public class Program
             app.UseExceptionHandler("/Error");
 
 
+
+        // used controllers for below 
         //app.MapGet("/error", () => "test error");
 
         //app.MapGet("/api/products/", SearchAll)
@@ -87,17 +89,17 @@ public class Program
         //    .RequireAuthorization("ReadWrite");
 
 
-        // Authentication related - get new tokens  Login endpoint (public)
-        app.MapPost("/auth/login", AuthEndpoints.GetValidToken)
-            .WithName("Login")
-            .WithTags("Authentication");
+        // Get new tokens  - Login endpoint (public)
+        //app.MapPost("/auth/login", AuthEndpoints.GetValidToken)
+        //    .WithName("Login")
+        //    .WithTags("Authentication");
 
 
-        // Authentication related - Token validation endpoint (protected)
-        app.MapGet("/validate-token", AuthEndpoints.GetTokenValidity)
-            .RequireAuthorization()
-            .WithName("ValidateToken")
-            .WithTags("Protected");
+        ////Token validation endpoint (protected)
+        //app.MapGet("/auth/validate-token", AuthEndpoints.GetTokenValidity)
+        //    .RequireAuthorization()
+        //    .WithName("ValidateToken")
+        //    .WithTags("Protected");
 
         app.Run();
     }
