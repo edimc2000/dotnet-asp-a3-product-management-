@@ -1,25 +1,23 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using static ProductManagement.ProductManagementEndpoints;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Identity.Data;
 using ProductManagement.JwtAuth;
 using ProductManagement.Helper;
 
 namespace ProductManagement;
 
+/// <summary>Main program class for the Product Management API.</summary>
+/// <para>Author: Eddie C.</para>
+/// <para>Version: 1.0</para>
+/// <para>Date: Jan. 18, 2026</para>
 public class Program
 {
+    /// <summary>Main entry point for the Product Management application.</summary>
+    /// <param name="args">Command-line arguments passed to the application.</param>
     public static void Main(string[] args)
-
     {
-
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        // env and config 
-        builder.Configuration.AddJsonFile("dev_config.json", optional: true, reloadOnChange: true);
-        
+        // dev config and environment
+        builder.Configuration.AddJsonFile("dev_config.json", true, true);
+
         //Add controllers 
         builder.ConfigureControllers();
 
@@ -27,32 +25,29 @@ public class Program
         builder.ConfigureDb();
 
         // Add services to the container - authentication / authorization
-        JwtSettings jwtSettings = builder.ConfigureAuth(); 
+        JwtSettings jwtSettings = builder.ConfigureAuth();
 
-        // Add razor pages 
+        // Add razor pages - pages for apidoc and dev_tokens 
         builder.ConfigureRazor();
-        
+
 
         WebApplication app = builder.Build();
-        
-        // Standard middleware ordering:
+
+        // Standard middleware in proper order
         app.UseHttpsRedirection();
-        app.UseStaticFiles();      // enable wwwroot static assets
-        app.UseRouting();          // MUST come before authentication/authorization
+        app.UseStaticFiles();
+        app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapRazorPages();
 
         app.MapControllers();
-
-
-        //This ensures your database is ready with migrations
-        //applied and optimized for SQLite before your app starts handling requests
+        
+        // This ensures your database is ready with migrations
+        // Applied and optimized for SQLite before your app starts handling requests
         app.ApplyDatabaseMigrations();
-
-
-
+        
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
@@ -60,38 +55,9 @@ public class Program
             app.UseDeveloperExceptionPage();
         }
         else
+        {
             app.UseExceptionHandler("/error");
-
-
-
-        // used controllers for below 
-        //app.MapGet("/error", () => "test error");
-
-        //app.MapGet("/api/products/", SearchAll)
-        //    .RequireAuthorization();
-
-        //app.MapGet("/api/products/{id}", SearchById)
-        //    .WithName("GetAccountById")
-        //    .RequireAuthorization();
-
-        //app.MapPost("/api/products/", RegisterNewProduct)
-        //    .RequireAuthorization("ReadWrite");
-
-        //app.MapDelete("/api/delete/{id}", DeleteById)
-        //    .RequireAuthorization("ReadWrite");
-
-
-        // Get new tokens  - Login endpoint (public)
-        //app.MapPost("/auth/login", AuthEndpoints.GetValidToken)
-        //    .WithName("Login")
-        //    .WithTags("Authentication");
-
-
-        ////Token validation endpoint (protected)
-        //app.MapGet("/auth/validate-token", AuthEndpoints.GetTokenValidity)
-        //    .RequireAuthorization()
-        //    .WithName("ValidateToken")
-        //    .WithTags("Protected");
+        }
 
         app.Run();
     }
