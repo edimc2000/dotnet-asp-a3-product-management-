@@ -1,0 +1,23 @@
+{
+  "Database": {
+    "Details": {
+      "ConnectionString": "Data Source=./Database/product_management.db"
+    }
+  },
+  "Jwt": {
+    "Key": "super-secret-key-minimum-32-characters-long-here",
+    "Issuer": "minimal-api",
+    "Audience": "api-users",
+    "ExpiryInMinutes": 120
+  },
+  "Users": {
+    "readWrite": {
+      "userName": "admin",
+      "password": "admin123"
+    },
+    "readOnly": {
+      "userName": "user",
+      "password": "user123"
+    }
+  }
+}

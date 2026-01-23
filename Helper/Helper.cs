@@ -6,6 +6,13 @@ namespace ProductManagement.Helper
 {
     internal partial class Helper
     {
+    
+        public static IConfiguration DevConfiguration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("dev_config.json", true, true)
+            .Build();
+
+
         /// <summary>Array of restricted account IDs that cannot be modified or deleted.</summary>
         internal static readonly int[] restrictedIds = { 101, 102, 103 };
         

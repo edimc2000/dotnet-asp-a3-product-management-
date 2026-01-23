@@ -17,6 +17,9 @@ public class Program
 
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+        // env and config 
+        builder.Configuration.AddJsonFile("dev_config.json", optional: true, reloadOnChange: true);
+        
         //Add controllers 
         builder.ConfigureControllers();
 
@@ -29,6 +32,7 @@ public class Program
         // Add razor pages 
         builder.ConfigureRazor();
         
+
         WebApplication app = builder.Build();
         
         // Standard middleware ordering:
@@ -47,6 +51,14 @@ public class Program
         //applied and optimized for SQLite before your app starts handling requests
         app.ApplyDatabaseMigrations();
         
+        // debugging *******************************************
+        var lat = builder.Configuration
+            .GetSection("MapSettings")["test:toys"];
+
+
+        WriteLine($"CONFIG ---------------- {lat}");
+        //*******************************************
+
 
 
         // Configure the HTTP request pipeline.

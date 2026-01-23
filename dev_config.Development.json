@@ -1,0 +1,20 @@
+{
+  "DetailedErrors": true,
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "Authentication": {
+    "Schemes": {
+      "Bearer": {
+        "ValidAudiences": [
+          "http://localhost:5197",
+          "https://localhost:7047"
+        ],
+        "ValidIssuer": "dotnet-user-jwts"
+      }
+    }
+  }
+}
