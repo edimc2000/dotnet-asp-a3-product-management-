@@ -317,7 +317,7 @@
     },
     "/api/products/{id}": {
       "get": {
-        "summary": "Get product by ID",
+        "summary": "Get product by productId",
         "operationId": "getProductById",
         "tags": [
           "Products"
@@ -396,7 +396,7 @@
         }
       },
       "delete": {
-        "summary": "Delete a product",
+        "summary": "Delete a product by productId",
         "operationId": "deleteProduct",
         "tags": [
           "Products"
