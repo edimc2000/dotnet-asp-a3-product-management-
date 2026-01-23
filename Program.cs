@@ -17,6 +17,9 @@ public class Program
 
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+        //Add controllers 
+        builder.ConfigureControllers();
+
         // Add services to the container - database
         builder.ConfigureDb();
 
@@ -37,6 +40,8 @@ public class Program
 
         app.MapRazorPages();
 
+        app.MapControllers();
+
 
         //This ensures your database is ready with migrations
         //applied and optimized for SQLite before your app starts handling requests
@@ -54,20 +59,20 @@ public class Program
             app.UseExceptionHandler("/Error");
 
 
-        app.MapGet("/error", () => "test error");
+        //app.MapGet("/error", () => "test error");
 
-        app.MapGet("/api/products/", SearchAll)
-            .RequireAuthorization();
+        //app.MapGet("/api/products/", SearchAll)
+        //    .RequireAuthorization();
 
-        app.MapGet("/api/products/{id}", SearchById)
-            .WithName("GetAccountById")
-            .RequireAuthorization();
+        //app.MapGet("/api/products/{id}", SearchById)
+        //    .WithName("GetAccountById")
+        //    .RequireAuthorization();
 
-        app.MapPost("/api/products/", RegisterNewProduct)
-            .RequireAuthorization("ReadWrite");
+        //app.MapPost("/api/products/", RegisterNewProduct)
+        //    .RequireAuthorization("ReadWrite");
 
-        app.MapDelete("/api/delete/{id}", DeleteById)
-            .RequireAuthorization();
+        //app.MapDelete("/api/delete/{id}", DeleteById)
+        //    .RequireAuthorization("ReadWrite");
 
 
         // Authentication related - get new tokens  Login endpoint (public)
