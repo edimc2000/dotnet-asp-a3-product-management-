@@ -92,6 +92,17 @@ namespace ProductManagement
 
 
 
+    [ApiController]
+    [Route("error")] // Direct route mapping
+    public class ErrorController : ControllerBase
+    {
+        public IActionResult  DisplayError()
+        {
+            return Ok("There is an error on the page");
+        }
+    }
+    
+
 }
 
 

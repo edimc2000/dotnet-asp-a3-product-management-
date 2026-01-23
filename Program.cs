@@ -60,7 +60,7 @@ public class Program
             app.UseDeveloperExceptionPage();
         }
         else
-            app.UseExceptionHandler("/Error");
+            app.UseExceptionHandler("/error");
 
 
 
