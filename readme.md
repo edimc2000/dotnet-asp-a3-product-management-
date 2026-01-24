@@ -12,12 +12,12 @@ Operations:
 
 
 ## Requirements
-
+<details>
 - .NET SDK: Version 10.0.100
 - SQL Lite for the database
 - ANSI-capable terminal (optional, for colors)
 - Modern browser
-
+</details>
 
 ## Files and Folders
 <details> 
@@ -102,7 +102,7 @@ Program_root
 </details>
 
 ## Build and Run (powershell)
-
+<details>
 - Restore dependencies 
 	```
 	dotnet restore
@@ -117,3 +117,5 @@ Program_root
 	```
 	dotnet run
 	```
+
+</details>
