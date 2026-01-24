@@ -2,7 +2,11 @@
 
 
 
-### Files and Folders
+<details> 
+<summary>Files and Folders</summary>
+
+
+
 ```
 Program_root
 ¦   .gitignore
@@ -79,3 +83,4 @@ Program_root
     +---lib				            // styling and js libraries from template 
          
 ```
+</details>
