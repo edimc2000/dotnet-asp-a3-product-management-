@@ -1,8 +1,9 @@
 _AI - Deepseek was used in some parts of the codes. Those parts will have a comment about AI usage._
 
 
-# Product Management API (with a database) - using ASP.NET
-This is an API implementation using ASP.Net demonstrating API endpoints for basic product management.
+# Product Management API (with a database) - ASP.NET
+A RESTful API implementation using ASP.NET Core for basic product management with SQLite data persistence. 
+This demo application showcases clean architecture patterns and comprehensive endpoint documentation.
 
 Operations: 
 - **creating/registering a new product** (Create using HTTP method `POST`),  
@@ -163,12 +164,13 @@ Note: The developer token page is a Razor Pages application that utilizes the sa
 
 
 Dev Token Page
+
 ![Sample page](Screenshots/3-dev_token_page.png)
 
 
 
 ## API Endpoints Documentation 
-A custom Razor Pages interface provides comprehensive API documentation at {{url}}/apidocs (e.g. http://10.0.0.200:8090/apidoc). 
+A custom Razor Page interface provides comprehensive API documentation at {{url}}/apidocs (e.g. http://10.0.0.200:8090/apidoc). 
 This interactive documentation offers more details on responses, particularly for error cases 
 and failure scenarios, giving developers clearer guidance on API usage.
 
