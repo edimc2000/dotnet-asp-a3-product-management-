@@ -1,7 +1,10 @@
-﻿using static ProductManagement.Helper.Helper;
+﻿// API assistance was used on this class, both logic and documentation 
+
+using static ProductManagement.Helper.Helper;
 
 namespace ProductManagement.JwtAuth;
 
+/// <summary>Interface for authentication services.</summary>
 public interface IAuthService
 {
     UserModel? Authenticate(string username, string password);
@@ -16,11 +19,13 @@ public class AuthService : IAuthService
         new UserModel { Id = 2, Username = "user", Role = "User" }
     };
 
+    /// <summary>Authenticates a user with username and password against configuration.</summary>
+    /// <param name="username">The username to authenticate.</param>
+    /// <param name="password">The password to authenticate.</param>
+    /// <returns>The authenticated UserModel or null if authentication fails.</returns>
     public UserModel? Authenticate(string username, string password)
     {
         // Simple validation for testing (in production, use proper hashing!)
-        //bool isValid = (username == "admin" && password == "admin123") ||
-        //               (username == "user" && password == "user123");
         bool isValid = (username == DevConfiguration["Users:readWrite:userName"]
                         && password == DevConfiguration["Users:readWrite:password"]) ||
                        (username == DevConfiguration["Users:readOnly:userName"]
