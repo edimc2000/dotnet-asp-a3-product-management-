@@ -8,13 +8,13 @@ Program_root
 ¦   .gitignore
 ¦   appsettings.Development.json
 ¦   appsettings.json
-¦   Controller.cs			// Controller classes for available product APIs, authentication, and error handling
 ¦   dev_config.Development.json
-¦   dev_config.json			// Configuration for database, JWT tokens, and default users
 ¦   ProductManagement.csproj
 ¦   ProductManagement.slnx
+¦   Controller.cs			        // Controller classes for available product APIs, authentication, and error handling
+¦   dev_config.json			        // Configuration for database, JWT tokens, and default users. It should be substituted with production implementation
 ¦   ProductManagementEndpoints.cs	// Handles product Search, Create, and Delete endpoints
-¦   Program.cs				// Main program class for the API
+¦   Program.cs				        // Main program class for the API
 ¦   
 +---AppBuilder
 ¦       AppBuilderController.cs		/ Adds controller services to dependency injection
@@ -77,6 +77,9 @@ Program_root
     ¦       site.js
     ¦       
     +---lib				// styling and js libraries from template 
+         
+                    
+
          
                     
 

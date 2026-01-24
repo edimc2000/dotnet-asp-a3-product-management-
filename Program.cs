@@ -7,7 +7,7 @@ namespace ProductManagement;
 /// <summary>Main program class for the Product Management API.</summary>
 /// <para>Author: Eddie C.</para>
 /// <para>Version: 1.0</para>
-/// <para>Date: Jan. 18, 2026</para>
+/// <para>Date: Jan. 23, 2026</para>
 public class Program
 {
     /// <summary>Main entry point for the Product Management application.</summary>
