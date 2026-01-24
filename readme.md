@@ -137,3 +137,16 @@ The custom razor/api docs page provides more details on the reponses especially 
 
 
 
+## Test Capture / Report / Screenshots
+Test report can be found on this link - https://edimc2000.github.io/dotnet-asp-a3-product-management-playwright-test/
+Test framework (Playwright) - https://github.com/edimc2000/dotnet-asp-a3-product-management-playwright-test
+
+### Report Summary 
+![report summary](Screenshots/2-playwright_test_summary.png)
+
+
+### Report Sample Detail
+![report summary](Screenshots/2-playwright_test_sample.detail.png)
+
+## Contact
+If you have questions or need further changes, reply here or refer to the course materials.
