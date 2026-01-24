@@ -96,7 +96,6 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IResult> GetValidToken(LoginRequest request)
     {
-        WriteLine($"--- get token controller test ");
         return AuthEndpoints.GetValidToken(request, _tokenService, _authService, _jwtSettings);
     }
 
@@ -106,7 +105,6 @@ public class AuthController : ControllerBase
     [Authorize]
     public async Task<IResult> GetTokenValidity()
     {
-        WriteLine($"--- get token validity controller test ");
         return AuthEndpoints.GetTokenValidity(HttpContext);
     }
 }
