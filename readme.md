@@ -129,6 +129,9 @@ It's accessible when the program runs using the {{url}}/apidocs (e.g. http://10.
 The custom razor/api docs page provides more details on the reponses especially for failures. 
 
 ![main page](Screenshots/1-api_doc_page.png)
+![fetch all](Screenshots/1-api_doc_page_fetch_all.png)
+![fetch id](Screenshots/1-api_doc_page_create_1.png)
+![fetch id](Screenshots/1-api_doc_page_create_2.png)
 ![delete end point](Screenshots/1-api_doc_page_delete.png)
 
 
