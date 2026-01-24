@@ -13,6 +13,7 @@ Operations:
 
 ## Requirements
 <details>
+
 - .NET SDK: Version 10.0.100
 - SQL Lite for the database
 - ANSI-capable terminal (optional, for colors)
@@ -103,6 +104,7 @@ Program_root
 
 ## Build and Run (powershell)
 <details>
+
 - Restore dependencies 
 	```
 	dotnet restore
