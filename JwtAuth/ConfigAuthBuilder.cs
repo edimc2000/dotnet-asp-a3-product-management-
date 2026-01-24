@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿// API assistance was used on this class, both logic and documentation 
+
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -8,8 +10,12 @@ using ProductManagement.EntityModels.Data;
 
 namespace ProductManagement.JwtAuth;
 
+/// <summary>Application builder extensions for JWT authentication configuration.</summary>
 public static class AppBuilderAuth
 {
+    /// <summary>Configures JWT authentication, authorization policies, and identity services.</summary>
+    /// <param name="builder">The WebApplicationBuilder to configure.</param>
+    /// <returns>The configured JwtSettings instance.</returns>
     public static JwtSettings ConfigureAuth(this WebApplicationBuilder builder)
     {
         // Configure JWT Settings
@@ -17,8 +23,7 @@ public static class AppBuilderAuth
         builder.Services.AddSingleton(jwtSettings);
 
         // Register Identity DbContext and Identity services so UserManager/SignInManager are available
-        // Use a separate SQLite file for identity tables (adjust path as needed)
-        // this is for storing/reading users to/from a db ==> future development
+        // Use a separate SQLite file for identity tables (future feature), for storing/reading users to/from a db ==> future development
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlite("Data Source=./Database/identity.db"));
 
@@ -26,7 +31,6 @@ public static class AppBuilderAuth
         builder.Services.AddDefaultIdentity<IdentityUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
-                // adjust password / lockout options if needed
             })
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -57,7 +61,7 @@ public static class AppBuilderAuth
                 };
             });
 
-        // authorization policies
+        // Authorization policies
         builder.Services.AddAuthorization(options =>
         {
             options.AddPolicy("ReadOnly", policy =>
