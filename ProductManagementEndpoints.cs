@@ -1,27 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using static ProductManagement.Helper.Helper;
-
 
 namespace ProductManagement;
 
 public class ProductManagementEndpoints
 {
-    /// <summary>Searches for and returns all accounts in the database.</summary>
-    /// <param name="db">The database context for account operations.</param>
+    /// <summary>Searches for and returns all products in the database.</summary>
+    /// <param name="db">The database context for product operations.</param>
     /// <returns>An IResult containing the search results.</returns>
     public static async Task<IResult> SearchAll(ProductManagementDb db)
     {
         List<Product> productList = await db.Products.AsNoTracking().ToListAsync();
         return SearchSuccess(productList);
     }
-
-
-    /// <summary>Searches for and returns all accounts in the database.</summary>
-    /// <param name="db">The database context for account operations.</param>
-    /// <returns>An IResult containing the search results.</returns>
+    
+    /// <summary>Searches for and returns a product by its ID.</summary>
+    /// <param name="id">The product ID to search for.</param>
+    /// <param name="db">The database context for product operations.</param>
+    /// <returns>An IResult containing the search result or error.</returns>
     public static async Task<IResult> SearchById(string id, ProductManagementDb db)
     {
         if (!int.TryParse(id, out int parsedId))
@@ -38,12 +35,13 @@ public class ProductManagementEndpoints
         product.LastAccessedAt = DateTime.UtcNow;
         product.LastAccessedBy = "_search_api";
         await db.SaveChangesAsync();
-
-
         return SearchSuccess(productList);
     }
 
-
+    /// <summary>Registers a new product in the database.</summary>
+    /// <param name="context">The HTTP context containing the request data.</param>
+    /// <param name="db">The database context for product operations.</param>
+    /// <returns>An IResult indicating success or validation errors.</returns>
     public static async Task<IResult> RegisterNewProduct
         (HttpContext context, ProductManagementDb db)
     {
@@ -66,7 +64,6 @@ public class ProductManagementEndpoints
             CreatedBy = "_create_api"
         };
 
-
         ValidationContext validationContext = new(inputData);
         List<ValidationResult> validationResults = new();
         bool isValid = Validator.TryValidateObject(inputData,
@@ -76,21 +73,20 @@ public class ProductManagementEndpoints
 
         if (!isValid)
         {
-            WriteLine(" -----> validation NOT ok ");
             string errors = string.Join("; ",
                 validationResults.Select(r => r.ErrorMessage));
             return BadRequest($"Validation Error: {errors}");
         }
-
-        WriteLine(" -----> validation ok ");
-
+        
         db.Add(inputData);
         await db.SaveChangesAsync();
-
         return CreateSuccess(inputData, inputData.ProductId);
     }
 
-
+    /// <summary>Deletes a product by its ID.</summary>
+    /// <param name="id">The product ID to delete.</param>
+    /// <param name="db">The database context for product operations.</param>
+    /// <returns>An IResult indicating success or error.</returns>
     public static async Task<IResult> DeleteById
         (string id, ProductManagementDb db)
     {
@@ -107,7 +103,6 @@ public class ProductManagementEndpoints
 
         db.Products.Remove(account);
         await db.SaveChangesAsync();
-
         return DeleteSuccess();
     }
 

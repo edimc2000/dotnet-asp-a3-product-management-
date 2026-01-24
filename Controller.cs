@@ -6,7 +6,7 @@ using ProductManagement.JwtAuth;
 namespace ProductManagement
 {
     [ApiController]
-    [Route("api")]  // Direct route mapping
+    [Route("api/products")]  // Direct route mapping
     public class ProductsController : ControllerBase
     {
         private readonly ProductManagementDb _db;
@@ -16,7 +16,7 @@ namespace ProductManagement
             _db = db;
         }
 
-        [HttpGet("products")]
+        [HttpGet]
         [Authorize]
         public async Task<IResult> SearchAll()
         {
@@ -25,7 +25,7 @@ namespace ProductManagement
         }
 
         // You can add other product endpoints
-        [HttpGet("products/{id}", Name = "GetAccountById")]
+        [HttpGet("{id}", Name = "GetAccountById")]
         [Authorize]
         public async Task<IResult> SearchById(string id)
         {
@@ -36,7 +36,7 @@ namespace ProductManagement
 
 
         // You can add other product endpoints
-        [HttpPost("products")]
+        [HttpPost("")]
         [Authorize(Policy = "ReadWrite")]
         public async Task<IResult> RegisterNewProduct()
         {
@@ -44,7 +44,7 @@ namespace ProductManagement
             return await ProductManagementEndpoints.RegisterNewProduct(HttpContext, _db);
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         [Authorize(Policy = "ReadWrite")]
         public async Task<IResult> DeleteById(string id)
         {
