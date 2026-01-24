@@ -148,13 +148,16 @@ Token Generation Methods
 		}
     ```
 
-    - Developer Token Page: User-friendly web interface available at {{url}}/devtoken (e.g. http://10.0.0.200:8090/apidocs)
+    - Developer Token Page: User-friendly web interface available at {{url}}/devtoken (e.g. http://10.0.0.200:8090/devtoken)
 
 Token Roles:
 
 - Admin Tokens: Grant read and write permissions
 
 - User Tokens: Provide read-only access
+
+Token Validity: 2 hrs
+
 
 Note: The developer token page is a Razor Pages application that utilizes the same token generation API.
 
@@ -164,10 +167,9 @@ Note: The developer token page is a Razor Pages application that utilizes the sa
 
 
 ## API Endpoints Documentation 
-
-I have implemented a razor page for the documentation which looks like the screen shots below. 
-It's accessible when the program runs using the {{url}}/apidocs (e.g. http://10.0.0.200:8090/apidocs). 
-The custom razor/api docs page provides more details on the reponses especially for failures. 
+A custom Razor Pages interface provides comprehensive API documentation at {{url}}/apidocs(e.g. http://10.0.0.200:8090/apidocs). 
+This interactive documentation offers enhanced response details, particularly for error cases 
+and failure scenarios, giving developers clearer guidance on API usage.
 
 ![main page](Screenshots/1-api_doc_page.png)
 ![fetch all](Screenshots/1-api_doc_page_fetch_all.png)
