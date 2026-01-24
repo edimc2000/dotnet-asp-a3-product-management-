@@ -122,12 +122,14 @@ Program_root
 
 </details>
 
-## API Endpoints
+## API Endpoints Documentation 
 
 I have implemented a razor page for the documentation which looks like the screen shots below. 
-It's accessible when the program runs using the {{url}}/apidocs. 
+It's accessible when the program runs using the {{url}}/apidocs (e.g. http://10.0.0.200:8090/apidocs). 
+The custom razor/api docs page provides more details on the reponses especially for failures. 
 
-![report summary](Screenshots/1-api_doc_page.png)
+![main page](Screenshots/1-api_doc_page.png)
+![delete end point](Screenshots/1-api_doc_page_delete.png)
 
 
 
