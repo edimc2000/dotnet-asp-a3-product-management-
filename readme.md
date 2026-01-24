@@ -47,7 +47,7 @@ Program_root
 ¦       TokenService.cs			    // ITokenService implementation for JWT generation
 ¦       
 +---Pages
-¦   ¦   ApiDoc.cshtml			    // Customized API documentation (static)
+¦   ¦   ApiDoc.cshtml			    // Customized API documentation (from static assets)
 ¦   ¦   ApiCoc.cshtml.cs
 ¦   ¦   DevToken.cshtml			    // Developer token page for testing purposes 
 ¦   ¦   DevToken.cshtml.cs
