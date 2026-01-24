@@ -1,6 +1,28 @@
-﻿// Configuration variable - set default state (true = expanded, false = collapsed)
+﻿/**
+ * @file A JavaScript module for displaying OpenAPI/Swagger documentation
+ * with expandable/collapsible sections and interactive controls.
+ * @version 1.0.0
+ * @author Your Name
+ */
+
+/**
+ * Configuration variable - determines the default state of method sections.
+ * @type {boolean}
+ * @constant
+ * @default
+ * @description true = expanded by default, false = collapsed by default
+ */
 const DEFAULT_EXPAND_STATE = false; // Change to true if you want expanded by default
 
+/**
+ * Initializes the application when the DOM is fully loaded.
+ * Fetches OpenAPI JSON data and displays the API paths.
+ * @async
+ * @function
+ * @listens DOMContentLoaded
+ * @returns {Promise<void>}
+ * @throws {Error} If the JSON file cannot be fetched or parsed
+ */
 document.addEventListener('DOMContentLoaded', async function () {
     console.log('Starting to read OpenAPI JSON...');
 
@@ -20,6 +42,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 });
 
+/**
+ * Displays all API paths and their methods in the container.
+ * Creates the header with expand/collapse controls and renders all path cards.
+ * @function
+ * @param {Object} paths - The paths object from OpenAPI data containing API endpoints
+ * @returns {void}
+ */
 function displayPaths(paths) {
     const container = document.getElementById('api-paths') || createContainer('api-paths', '');
 
@@ -61,6 +90,13 @@ function displayPaths(paths) {
     });
 }
 
+/**
+ * Creates an HTML card for a specific API path containing all its HTTP methods.
+ * @function
+ * @param {string} path - The API endpoint path
+ * @param {Object} methods - Object containing HTTP methods (GET, POST, etc.) and their details
+ * @returns {string} HTML string representing the path card
+ */
 function createPathCard(path, methods) {
     let methodsHtml = '';
 
@@ -158,8 +194,16 @@ function createPathCard(path, methods) {
 `;
 }
 
-// NEW FUNCTIONS FOR EXPAND/COLLAPSE CONTROLS
+/**
+ * NEW FUNCTIONS FOR EXPAND/COLLAPSE CONTROLS
+ */
 
+/**
+ * Initializes all method sections to their default state (expanded or collapsed).
+ * Based on the DEFAULT_EXPAND_STATE configuration.
+ * @function
+ * @returns {void}
+ */
 function initializeAllSections() {
     document.querySelectorAll('.method-header').forEach(header => {
         const details = header.nextElementSibling;
@@ -175,6 +219,12 @@ function initializeAllSections() {
     });
 }
 
+/**
+ * Toggles the visibility of a single method section when its header is clicked.
+ * @function
+ * @param {Event} event - The click event
+ * @returns {void}
+ */
 function toggleSingleSection(event) {
     const header = event.currentTarget;
     const details = header.nextElementSibling;
@@ -189,6 +239,11 @@ function toggleSingleSection(event) {
     }
 }
 
+/**
+ * Expands all method sections to show their details.
+ * @function
+ * @returns {void}
+ */
 function expandAllSections() {
     document.querySelectorAll('.method-header').forEach(header => {
         const details = header.nextElementSibling;
@@ -199,6 +254,11 @@ function expandAllSections() {
     });
 }
 
+/**
+ * Collapses all method sections to hide their details.
+ * @function
+ * @returns {void}
+ */
 function collapseAllSections() {
     document.querySelectorAll('.method-header').forEach(header => {
         const details = header.nextElementSibling;
@@ -209,7 +269,13 @@ function collapseAllSections() {
     });
 }
 
-// Format request body with example only
+/**
+ * Formats the request body content with example only.
+ * @function
+ * @param {Object} content - The request body content object
+ * @param {Object} [content.example] - Example request body
+ * @returns {string} HTML string representing the formatted request body
+ */
 function formatRequestBody(content) {
     let requestBodyHtml = '';
 
@@ -227,7 +293,14 @@ function formatRequestBody(content) {
     return requestBodyHtml;
 }
 
-// Format response examples
+/**
+ * Formats response examples from OpenAPI response object.
+ * @function
+ * @param {Object} response - The response object from OpenAPI
+ * @param {Object} [response.content] - Response content
+ * @param {Object} [response.content['application/json']] - JSON response content
+ * @returns {string} HTML string representing the formatted response examples
+ */
 function formatResponseExamples(response) {
     let examplesHtml = '';
 
@@ -271,6 +344,13 @@ function formatResponseExamples(response) {
     return examplesHtml;
 }
 
+/**
+ * Creates a container element for API documentation.
+ * @function
+ * @param {string} id - The ID for the container element
+ * @param {string} title - The title to display in the container
+ * @returns {HTMLElement} The created container element
+ */
 function createContainer(id, title) {
     const container = document.createElement('div');
     container.id = id;
@@ -286,6 +366,12 @@ function createContainer(id, title) {
     return container;
 }
 
+/**
+ * Displays an error message when API documentation cannot be loaded.
+ * @function
+ * @param {string} message - The error message to display
+ * @returns {void}
+ */
 function displayError(message) {
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';

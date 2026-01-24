@@ -1,539 +1,537 @@
 ﻿main {
-    font-family: "TikTok Sans", sans-serif;
-    font-size: 0.85rem;
-    color: black; 
+  font-family: 'TikTok Sans', sans-serif;
+  font-size: 0.85rem;
+  color: black;
 }
 
-h1{
-    padding-top: 2rem;
-    font-size: 2rem; 
-    color:darkgray;
+h1 {
+  padding-top: 2rem;
+  font-size: 2rem;
+  color: darkgray;
 }
 
 /* Method Section */
 .method-section {
-    margin-bottom: 1rem;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    overflow: hidden;
-    background: white;
+  margin-bottom: 1rem;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  overflow: hidden;
+  background: white;
 }
 
 .method-header {
-    background: #f6f8fa;
-    padding: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border-bottom: 1px solid #e1e4e8;
-    flex-wrap: wrap;
+  background: #f6f8fa;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #e1e4e8;
+  flex-wrap: wrap;
 }
 
-    .method-header:hover {
-        background: #edf2f7;
-    }
+.method-header:hover {
+  background: #edf2f7;
+}
 
-    .method-header .toggle-arrow {
-        font-size: 0.8rem;
-        color: #666;
-        flex-shrink: 0;
-        width: 16px;
-    }
+.method-header .toggle-arrow {
+  font-size: 0.8rem;
+  color: #666;
+  flex-shrink: 0;
+  width: 16px;
+}
 
-    /* METHOD BADGE in header */
-    .method-header .method-badge {
-        padding: 0.25rem 0.75rem;
-        border-radius: 4px;
-        font-weight: bold;
-        font-size: 1rem;
-        color: white;
-        text-transform: uppercase;
-        flex-shrink: 0;
-        min-width: 60px;
-        text-align: center;
-    }
+/* METHOD BADGE in header */
+.method-header .method-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  min-width: 60px;
+  text-align: center;
+}
 
-        /* Badge color classes in header */
-        .method-header .method-badge.get {
-            background: #61affe;
-        }
+/* Badge color classes in header */
+.method-header .method-badge.get {
+  background: #61affe;
+}
 
-        .method-header .method-badge.post {
-            background: #49cc90;
-        }
+.method-header .method-badge.post {
+  background: #49cc90;
+}
 
-        .method-header .method-badge.put {
-            background: #fca130;
-        }
+.method-header .method-badge.put {
+  background: #fca130;
+}
 
-        .method-header .method-badge.patch {
-            background: #50e3c2;
-        }
+.method-header .method-badge.patch {
+  background: #50e3c2;
+}
 
-        .method-header .method-badge.delete {
-            background: #f93e3e;
-        }
+.method-header .method-badge.delete {
+  background: #f93e3e;
+}
 
-        .method-header .method-badge.default {
-            background: #9012fe;
-        }
+.method-header .method-badge.default {
+  background: #9012fe;
+}
 
-    .method-header .path-url {
-        font-family: "Google Sans Code", monospace;
-        font-size: 1.5rem;
-        color: royalblue;
-        font-weight: 500;
-        flex-grow: 1;
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
+.method-header .path-url {
+  font-family: 'Google Sans Code', monospace;
+  font-size: 1.5rem;
+  color: royalblue;
+  font-weight: 500;
+  flex-grow: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-    .method-header .method-summary {
-        font-family: "Open Sans", sans-serif;
-        font-weight: 500;
-        color: #555;
-        font-size: 1.5rem;
-        flex-shrink: 0;
-        max-width: 50%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
+.method-header .method-summary {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  color: #555;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  max-width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .method-details {
-    font-family: "Open Sans", sans-serif;
-    padding: 1rem;
-    background: white;
+  font-family: 'Open Sans', sans-serif;
+  padding: 1rem;
+  background: white;
 }
 
 /* Path card container */
 .path-card {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 /* Update the existing CSS selectors to work with new structure */
 .method-details > .parameters-section {
-    margin: 1rem 0;
-    padding: 0.5rem;
-    background: #f8f9fa;
-    border-radius: 6px;
-    border: 1px solid #e1e4e8;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e1e4e8;
 }
 
-    .method-details > .parameters-section > strong {
-        font-size: 1rem;
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #495057;
-    }
+.method-details > .parameters-section > strong {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
 
 .method-details > .request-body-section {
-    margin: 1rem 0;
-    padding: 0.5rem;
-    background: #f8f9fa;
-    border-radius: 6px;
-    border: 1px solid #e1e4e8;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e1e4e8;
 }
 
 .method-details > .authentication-section {
-    margin: 1rem 0;
-    padding: 0.5rem;
-    background: #fff3cd;
-    border-radius: 6px;
-    border: 1px solid #ffeaa7;
-    border-left: 4px solid #f39c12;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background: #fff3cd;
+  border-radius: 6px;
+  border: 1px solid #ffeaa7;
+  border-left: 4px solid #f39c12;
 }
 
 .method-details > .responses-section {
-    margin: 1rem 0;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 6px;
-    border: 1px solid #e1e4e8;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e1e4e8;
 }
 
 /* Remove old path-card specific styles since we're using method-section */
 .path-card {
-    border: none;
-    background: transparent;
+  border: none;
+  background: transparent;
 }
 
 /* Remove old path-header styles since we're using method-header */
 .path-header {
-    display: none; /* Hide the old path-header */
+  display: none; /* Hide the old path-header */
 }
 
 /* Mobile responsiveness for new structure */
 @media (max-width: 768px) {
-    .method-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-        padding-right: 2.5rem;
-    }
+  .method-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-right: 2.5rem;
+  }
 
-        .method-header .method-summary {
-            max-width: 100%;
-            white-space: normal;
-            font-size: 1.2rem;
-        }
+  .method-header .method-summary {
+    max-width: 100%;
+    white-space: normal;
+    font-size: 1.2rem;
+  }
 
-        .method-header .path-url {
-            font-size: 1.2rem;
-        }
+  .method-header .path-url {
+    font-size: 1.2rem;
+  }
 
-        .method-header .method-badge {
-            align-self: flex-start;
-            font-size: 0.9rem;
-        }
+  .method-header .method-badge {
+    align-self: flex-start;
+    font-size: 0.9rem;
+  }
 
-        .method-header .toggle-arrow {
-            position: absolute;
-            right: 1rem;
-            top: 1rem;
-        }
+  .method-header .toggle-arrow {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
 }
-
 
 /* Code formatting for examples */
 .example-value {
-    background: #2d3748;
-    border-radius: 4px;
-    padding: 1rem;
-    overflow-x: auto;
-    margin-top: 0.5rem;
+  background: #2d3748;
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-top: 0.5rem;
 }
 
-    .example-value pre {
-        margin: 0;
-        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-        font-size: 0.85rem;
-        line-height: 1.4;
-    }
+.example-value pre {
+  margin: 0;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
 
-    .example-value code {
-        color: #e2e8f0;
-        display: block;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-    }
+.example-value code {
+  color: #e2e8f0;
+  display: block;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 
 /* Make sure code blocks have proper spacing */
 .language-json {
-    display: block;
-    padding: 0;
-    margin: 0;
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  display: block;
+  padding: 0;
+  margin: 0;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
-    /* JSON syntax highlighting */
-    .language-json .token.property {
-        color: #90cdf4;
-    }
+/* JSON syntax highlighting */
+.language-json .token.property {
+  color: #90cdf4;
+}
 
-    .language-json .token.string {
-        color: #9ae6b4;
-    }
+.language-json .token.string {
+  color: #9ae6b4;
+}
 
-    .language-json .token.number {
-        color: #fbb6ce;
-    }
+.language-json .token.number {
+  color: #fbb6ce;
+}
 
-    .language-json .token.boolean {
-        color: #fed7d7;
-    }
+.language-json .token.boolean {
+  color: #fed7d7;
+}
 
-    .language-json .token.null {
-        color: #cbd5e0;
-    }
+.language-json .token.null {
+  color: #cbd5e0;
+}
 
-    .language-json .token.punctuation {
-        color: #e2e8f0;
-    }
+.language-json .token.punctuation {
+  color: #e2e8f0;
+}
 
 .language-text code {
-    color: #68d391;
+  color: #68d391;
 }
 
 /* For short auth header - no scroll */
 .auth-example .example-value {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
-    .auth-example .example-value code {
-        white-space: normal;
-        color: #68d391;
-        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    }
-
-
+.auth-example .example-value code {
+  white-space: normal;
+  color: #68d391;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
 
 /* Responses Section in new structure */
 .method-details > .responses-section {
-    margin: 1rem 0;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 6px;
-    border: 1px solid #e1e4e8;
-    font-family: "Open Sans", sans-serif;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e1e4e8;
+  font-family: 'Open Sans', sans-serif;
 }
 
-    .method-details > .responses-section > strong {
-        display: block;
-        margin-bottom: 1rem;
-        color: #495057;
-        font-size: 1.1rem;
-    }
+.method-details > .responses-section > strong {
+  display: block;
+  margin-bottom: 1rem;
+  color: #495057;
+  font-size: 1.1rem;
+}
 
 .responses-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
 
 /* Response Item */
 .response-item {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #e9ecef;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e9ecef;
 }
 
-    .response-item:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-    }
+.response-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
 
 .response-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .response-description {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.5rem !important;
-/*    font-weight: 500;*/
-    color: #333;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5rem !important;
+  /*    font-weight: 500;*/
+  color: #333;
 }
 
 /* Status Code Colors */
 .status-code {
-    display: inline-block;
-    padding: 0.1rem 0.4rem;
-    border-radius: 3px;
-    font-family: monospace;
-    font-size: 0.85rem;
-    font-weight: bold;
-    min-width: 3rem;
-    text-align: center;
-    margin-right: 0.5rem;
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+  min-width: 3rem;
+  text-align: center;
+  margin-right: 0.5rem;
 }
 
-.status-200, 
+.status-200,
 .status-201 {
-    background: #c3e6cb;
-    color: #155724;
+  background: #c3e6cb;
+  color: #155724;
 }
 
 .status-400,
 .status-401,
 .status-403,
 .status-405 {
-    background: #f8d7da;
-    color: #721c24;
+  background: #f8d7da;
+  color: #721c24;
 }
 
 .status-409 {
-    background: #fff3cd;
-    color: #856404;
+  background: #fff3cd;
+  color: #856404;
 }
 
 .status-422 {
-    background: #d1ecf1;
-    color: #0c5460;
+  background: #d1ecf1;
+  color: #0c5460;
 }
 
 .status-404 {
-    background: #d1ecf1;
-    color: #0c5460;
+  background: #d1ecf1;
+  color: #0c5460;
 }
 
 .status-500 {
-    background: #f8d7da;
-    color: #721c24;
+  background: #f8d7da;
+  color: #721c24;
 }
 
 /* Examples Container inside Responses */
 .responses-section .examples-container {
-    margin-top: 1rem;
-    padding: 1rem;
-    background: white;
-    border-radius: 4px;
-    border: 1px solid #e1e4e8;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #e1e4e8;
 }
 
-    .responses-section .examples-container > strong {
-        display: block;
-        margin-bottom: 0.75rem;
-        color: #495057;
-        font-size: 0.95rem;
-    }
+.responses-section .examples-container > strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #495057;
+  font-size: 0.95rem;
+}
 
 .responses-section .example-item {
-    margin-bottom: 1rem;
-    padding: 0.75rem;
-    background: #f8f9fa;
-    border-radius: 4px;
-    border: 1px solid #dee2e6;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
 }
 
-    .responses-section .example-item:last-child {
-        margin-bottom: 0;
-    }
+.responses-section .example-item:last-child {
+  margin-bottom: 0;
+}
 
 .responses-section .example-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px dashed #ddd;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #ddd;
 }
 
 .responses-section .example-name {
-    font-weight: 600;
-    color: #2c3e50;
-    background: #e8f4f8;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    font-size: 0.9rem;
+  font-weight: 600;
+  color: #2c3e50;
+  background: #e8f4f8;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
 }
 
 .responses-section .example-summary {
-    color: #7f8c8d;
-    font-style: italic;
-    font-size: 0.9rem;
+  color: #7f8c8d;
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
 /* Code examples inside responses */
 .responses-section .example-value {
-    background: #2d3748;
-    border-radius: 4px;
-    padding: 1rem;
-    overflow-x: auto;
-    margin-top: 0.5rem;
+  background: #2d3748;
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-top: 0.5rem;
 }
 
-    .responses-section .example-value pre {
-        margin: 0;
-        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-        font-size: 0.85rem;
-        line-height: 1.4;
-    }
+.responses-section .example-value pre {
+  margin: 0;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
 
-    .responses-section .example-value code {
-        color: #e2e8f0;
-        display: block;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-    }
+.responses-section .example-value code {
+  color: #e2e8f0;
+  display: block;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 
 /* JSON syntax highlighting */
 .responses-section .language-json .token.property {
-    color: #90cdf4;
+  color: #90cdf4;
 }
 
 .responses-section .language-json .token.string {
-    color: #9ae6b4;
+  color: #9ae6b4;
 }
 
 .responses-section .language-json .token.number {
-    color: #fbb6ce;
+  color: #fbb6ce;
 }
 
 .responses-section .language-json .token.boolean {
-    color: #fed7d7;
+  color: #fed7d7;
 }
 
 .responses-section .language-json .token.null {
-    color: #cbd5e0;
+  color: #cbd5e0;
 }
 
-.method-details[style*="display: block"] {
-    display: block;
+.method-details[style*='display: block'] {
+  display: block;
 }
 
 /* Smooth transition for collapse/expand */
 .method-details {
-    max-height: 0;
-    opacity: 0;
-    padding: 0 1rem;
-    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  padding: 0 1rem;
+  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
 }
 
-    .method-details[style*="display: block"] {
-        max-height: 5000px; /* Large enough to accommodate content */
-        opacity: 1;
-        padding: 1rem;
-    }
-
+.method-details[style*='display: block'] {
+  max-height: 5000px; /* Large enough to accommodate content */
+  opacity: 1;
+  padding: 1rem;
+}
 
 /* Controls for expand/collapse */
 .controls {
-    margin-bottom: 1rem;
-    display: flex;
-    gap: 0.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
-    .controls button {
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 4px;
-        font-weight: 500;
-        cursor: pointer;
-        font-size: 0.9rem;
-        transition: background-color 0.2s;
-    }
+.controls button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
 
-    .controls #expand-all {
-        background: #28a745;
-        color: white;
-    }
+.controls #expand-all {
+  background: #28a745;
+  color: white;
+}
 
-        .controls #expand-all:hover {
-            background: #218838;
-        }
+.controls #expand-all:hover {
+  background: #218838;
+}
 
-    .controls #collapse-all {
-        background: #6c757d;
-        color: white;
-    }
+.controls #collapse-all {
+  background: #6c757d;
+  color: white;
+}
 
-        .controls #collapse-all:hover {
-            background: #5a6268;
-        }
+.controls #collapse-all:hover {
+  background: #5a6268;
+}
 
+[class*='status'] {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5rem !important;
+}
 
+[class*='example'] > strong {
+  color: gray !important;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.85rem !important;
+}
 
-[class*=status] {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.5rem !important;
+[class$='details'] > [class$='section'] > strong {
+  color: black !important;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.85rem !important;
 }
 
 
-
-    [class*=example] > strong {
-        color: gray !important;
-        font-family: "Open Sans", sans-serif;
-        font-size: 0.85rem !important;
-    }
-
-    [class$=details] > [class$=section] > strong {
-        color: black !important;
-        font-family: "Open Sans", sans-serif;
-        font-size: 0.85rem !important;
-    }
+.param-name {
+    font-family: 'Google Sans Code', monospace;
+    font-size: 1.3rem !important;
+}
