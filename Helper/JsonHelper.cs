@@ -1,7 +1,4 @@
 ﻿using System.Text.Json;
-
-
-
 namespace ProductManagement.Helper;
 
 internal partial class Helper
@@ -60,8 +57,6 @@ internal partial class Helper
             return (default, UnprocessableEntity("Malformed JSON in request body"));
         }
     }
-
-
 
     public class ValidateJsonFilter : IEndpointFilter
     {

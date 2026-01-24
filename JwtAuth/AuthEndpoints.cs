@@ -1,11 +1,21 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿// API assistance was used on this class, both logic and documentation 
+
+
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using ProductManagement.EntityModels.JwtAuth;
 
 namespace ProductManagement.JwtAuth;
 
+/// <summary>Authentication endpoints for JWT token operations.</summary>
 public class AuthEndpoints
 {
+    /// <summary>Generates a valid JWT token for authenticated users.</summary>
+    /// <param name="request">The login request containing credentials.</param>
+    /// <param name="tokenService">Service for JWT token generation.</param>
+    /// <param name="authService">Service for user authentication.</param>
+    /// <param name="jwtSettings">Configuration settings for JWT.</param>
+    /// <returns>An IResult containing the token or authentication error.</returns>
     public static IResult GetValidToken
     (
         LoginRequest request,
@@ -30,6 +40,9 @@ public class AuthEndpoints
         ));
     }
 
+    /// <summary>Validates the current JWT token and returns its details.</summary>
+    /// <param name="context">The HTTP context containing the authorization header.</param>
+    /// <returns>An IResult containing token validation details.</returns>
     public static IResult GetTokenValidity
         (HttpContext context)
     {
