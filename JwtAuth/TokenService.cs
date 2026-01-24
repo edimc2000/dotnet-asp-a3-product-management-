@@ -1,19 +1,27 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿// API assistance was used on this class, both logic and documentation 
+
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ProductManagement.JwtAuth
 {
+    /// <summary>Implementation of ITokenService for generating JWT tokens.</summary>
     public class TokenService : ITokenService
     {
         private readonly JwtSettings _jwtSettings;
 
+        /// <summary>Initializes a new instance of the TokenService.</summary>
+        /// <param name="jwtSettings">JWT configuration settings.</param>
         public TokenService(JwtSettings jwtSettings)
         {
             _jwtSettings = jwtSettings;
         }
 
+        /// <summary>Generates a JWT token for the specified user.</summary>
+        /// <param name="user">The user model to generate token for.</param>
+        /// <returns>A JWT token string.</returns>
         public string GenerateToken(UserModel user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
