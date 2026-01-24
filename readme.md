@@ -167,8 +167,8 @@ Note: The developer token page is a Razor Pages application that utilizes the sa
 
 
 ## API Endpoints Documentation 
-A custom Razor Pages interface provides comprehensive API documentation at {{url}}/apidocs(e.g. http://10.0.0.200:8090/apidocs). 
-This interactive documentation offers enhanced response details, particularly for error cases 
+A custom Razor Pages interface provides comprehensive API documentation at {{url}}/apidocs (e.g. http://10.0.0.200:8090/apidoc). 
+This interactive documentation offers more details on responses, particularly for error cases 
 and failure scenarios, giving developers clearer guidance on API usage.
 
 ![main page](Screenshots/1-api_doc_page.png)
