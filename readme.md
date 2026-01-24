@@ -121,3 +121,13 @@ Program_root
 	```
 
 </details>
+
+## API Endpoints
+
+I have implemented a razor page for the documentation which looks like the screen shots below. 
+It's accessible when the program runs using the {{url}}/apidocs. 
+
+![report summary](Screenshots/1-api_doc_page.png)
+
+
+
