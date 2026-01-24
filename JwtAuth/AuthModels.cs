@@ -1,6 +1,9 @@
-﻿using static ProductManagement.Helper.Helper;
+﻿// API assistance was used on this class, both logic and documentation 
 
-namespace ProductManagement.EntityModels.JwtAuth;
+
+using static ProductManagement.Helper.Helper;
+
+namespace ProductManagement.JwtAuth;
 
 public record LoginRequest(string Username, string Password);
 

@@ -1,9 +1,7 @@
 ﻿// API assistance was used on this class, both logic and documentation 
 
-
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using ProductManagement.EntityModels.JwtAuth;
 
 namespace ProductManagement.JwtAuth;
 

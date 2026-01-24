@@ -1,6 +1,6 @@
 ﻿using static ProductManagement.Helper.Helper;
 
-namespace ProductManagement.EntityModels.JwtAuth;
+namespace ProductManagement.JwtAuth;
 
 public interface IAuthService
 {

@@ -1,8 +1,6 @@
 using ProductManagement.Helper;
 using ProductManagement.AppBuilder;
-using ProductManagement.EntityModels.JwtAuth;
 using ProductManagement.JwtAuth;
-
 
 namespace ProductManagement;
 

@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using ProductManagement.EntityModels;
-using ProductManagement.EntityModels.JwtAuth;
 using ProductManagement.JwtAuth;
+
 
 
 namespace ProductManagement;
