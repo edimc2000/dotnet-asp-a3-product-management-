@@ -122,6 +122,47 @@ Program_root
 
 </details>
 
+### Generating dev tokens for API testing 
+Token Generation Methods
+* The system provides two paths for generating test tokens:
+
+    - Direct API Access: Programmatic token creation
+    
+    
+    
+    ```
+	endpoint: POST /auth/login 
+
+
+	Admin token - json content 
+		{"admin":"user","password":"admin123"}
+
+	User token - json content 
+		{"username":"user","password":"user123"}
+
+
+	Sample response:
+		{ 
+		  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2.... ....0eS9jbGFp",
+		  "message": "Welcome user! Token valid for 120 minutes."
+		}
+    ```
+
+    - Developer Token Page: User-friendly web interface available at {{url}}/devtoken (e.g. http://10.0.0.200:8090/apidocs)
+
+Token Roles:
+
+- Admin Tokens: Grant read and write permissions
+
+- User Tokens: Provide read-only access
+
+Note: The developer token page is a Razor Pages application that utilizes the same token generation API.
+
+![report summary](Screenshots/3-dev_token_page.png)
+
+![report summary](Screenshots/3-dev_token_page.png)
+
+
 ## API Endpoints Documentation 
 
 I have implemented a razor page for the documentation which looks like the screen shots below. 
@@ -143,7 +184,6 @@ Test framework (Playwright) - https://github.com/edimc2000/dotnet-asp-a3-product
 
 ### Report Summary 
 ![report summary](Screenshots/2-playwright_test_summary.png)
-
 
 ### Report Sample Detail
 ![report summary](Screenshots/2-playwright_test_sample.detail.png)
