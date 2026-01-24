@@ -56,7 +56,7 @@ Program_root
 ¦   ¦   _ViewImports.cshtml
 ¦   ¦   _ViewStart.cshtml
 ¦   ¦   
-¦   +---Shared				// Templates and shared pages 
+¦   +---Shared				        // Templates and shared pages 
 ¦           
 +---Properties
 ¦       launchSettings.json
@@ -65,22 +65,17 @@ Program_root
     ¦   favicon.ico
     ¦   
     +---css
-    ¦       api-docs.css		// Styles for the api documentation 
-    ¦       devtoken.css 		// Styles for the dev token page 
+    ¦       api-docs.css            // Styles for the api documentation 
+    ¦       devtoken.css 		    // Styles for the dev token page 
     ¦       site.css
     ¦       
     +---doc_json
-    ¦       swagger.json		// data to generate the API documentaion 
+    ¦       swagger.json		    // data to generate the API documentaion 
     ¦       
     +---js
     ¦       readAndDisplay.js		// Script to generate the API documentation
     ¦       site.js
     ¦       
-    +---lib				// styling and js libraries from template 
+    +---lib				            // styling and js libraries from template 
          
-                    
-
-         
-                    
-
 ```
