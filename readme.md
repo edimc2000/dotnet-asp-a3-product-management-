@@ -132,6 +132,7 @@ The custom razor/api docs page provides more details on the reponses especially 
 ![fetch all](Screenshots/1-api_doc_page_fetch_all.png)
 ![create 1](Screenshots/1-api_doc_page_create_1.png)
 ![create 2](Screenshots/1-api_doc_page_create_2.png)
+![fetch 1](Screenshots/1-api_doc_page_fetch_id1.png)
 ![delete end point](Screenshots/1-api_doc_page_delete.png)
 
 
