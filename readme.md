@@ -122,7 +122,7 @@ Program_root
 
 </details>
 
-### Generating dev tokens for API testing 
+## Generating dev tokens for API testing 
 Token Generation Methods
 * The system provides two paths for generating test tokens:
 
@@ -161,9 +161,10 @@ Token Validity: 2 hrs
 
 Note: The developer token page is a Razor Pages application that utilizes the same token generation API.
 
-![report summary](Screenshots/3-dev_token_page.png)
 
-![report summary](Screenshots/3-dev_token_page.png)
+Dev Token Page
+![Sample page](Screenshots/3-dev_token_page.png)
+
 
 
 ## API Endpoints Documentation 
