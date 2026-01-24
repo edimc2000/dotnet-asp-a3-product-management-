@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using ProductManagement.EntityModels;
 using ProductManagement.EntityModels.JwtAuth;
+using ProductManagement.JwtAuth;
 
-namespace ProductManagement.EntityModels;
+
+namespace ProductManagement;
 
 /// <summary>API controller for product management operations.</summary>
 /// <para>Author: Eddie C.</para>

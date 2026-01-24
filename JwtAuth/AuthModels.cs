@@ -1,4 +1,4 @@
-﻿using static ProductManagement.EntityModels.Helper.Helper;
+﻿using static ProductManagement.Helper.Helper;
 
 namespace ProductManagement.EntityModels.JwtAuth;
 

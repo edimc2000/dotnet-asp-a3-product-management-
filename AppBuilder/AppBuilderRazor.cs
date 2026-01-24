@@ -1,4 +1,4 @@
-﻿namespace ProductManagement.EntityModels.AppBuilder;
+﻿namespace ProductManagement.AppBuilder;
 
 /// <summary>Application builder extensions for Razor Pages configuration.</summary>
 public static class AppBuilderRazor

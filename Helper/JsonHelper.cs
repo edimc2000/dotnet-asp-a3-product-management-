@@ -2,7 +2,7 @@
 
 
 
-namespace ProductManagement.EntityModels.Helper;
+namespace ProductManagement.Helper;
 
 internal partial class Helper
 {

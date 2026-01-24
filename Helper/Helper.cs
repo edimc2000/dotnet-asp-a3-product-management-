@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
+using ProductManagement.EntityModels;
 
-namespace ProductManagement.EntityModels.Helper
+namespace ProductManagement.Helper
 {
+    /// <summary>Helper utilities and constants for Product Management operations.</summary>
     internal partial class Helper
     {
-    
+        /// <summary>Development configuration loaded from dev_config.json.</summary>
         public static IConfiguration DevConfiguration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("dev_config.json", true, true)
@@ -29,7 +30,8 @@ namespace ProductManagement.EntityModels.Helper
             public JsonElement price { get; set; }
         }
 
-
+        /// <summary>Returns successful product deletion response.</summary>
+        /// <returns>An IResult containing the deletion success response.</returns>
         public static IResult DeleteSuccess()
         {
             return Results.Ok(
@@ -41,25 +43,9 @@ namespace ProductManagement.EntityModels.Helper
         }
 
 
-        //internal class DataValidation
-        //{
-        //    [Required]
-        //    [StringLength(100, MinimumLength = 2, ErrorMessage = "Description must be at least 2 characters long")]
-        //    public string name { get; set; }
-
-        //    [Required]
-        //    [StringLength(100, MinimumLength = 2, ErrorMessage = "Description must be at least 2 characters long")]
-        //    public string description { get; set; }
-
-        //    [Required]
-        //    [Range(1.0, 999999.0, ErrorMessage = "Price must be between 1 and 999,999")]
-        //    public double price { get; set; }
-        //}
-
-        /// <summary>
-        /// Returns successful all accounts response.</summary>
-        /// <param name="accountList">The list of Account objects to return in the response.</param>
-        /// <returns>An IResult containing the success response with account data.</returns>
+        /// <summary>Returns successful product search response.</summary>
+        /// <param name="productList">The list of Product objects to return in the response.</param>
+        /// <returns>An IResult containing the success response with product data.</returns>
         public static IResult SearchSuccess(List<Product> productList)
         {
             string message = $"{
@@ -89,7 +75,9 @@ namespace ProductManagement.EntityModels.Helper
             });
         }
 
-
+        /// <summary>Returns formatted forbidden response.</summary>
+        /// <param name="message">Error message.</param>
+        /// <returns>An IResult containing the forbidden error response.</returns>
         public static IResult Forbidden(string message)
         {
             return Results.Json(
@@ -99,6 +87,9 @@ namespace ProductManagement.EntityModels.Helper
         }
 
 
+        /// <summary>Returns formatted not found response.</summary>
+        /// <param name="message">Error message.</param>
+        /// <returns>An IResult containing the not found error response.</returns>
         public static IResult NotFound(string message)
         {
             return Results.NotFound(new
@@ -108,7 +99,9 @@ namespace ProductManagement.EntityModels.Helper
             });
         }
 
-
+        /// <summary>Returns formatted unprocessable entity response.</summary>
+        /// <param name="message">Error message.</param>
+        /// <returns>An IResult containing the unprocessable entity error response.</returns>
         public static IResult UnprocessableEntity(string message)
         {
             return Results.UnprocessableEntity(new
@@ -118,6 +111,10 @@ namespace ProductManagement.EntityModels.Helper
             });
         }
 
+        /// <summary>Returns successful product creation response.</summary>
+        /// <param name="newProduct">The newly created Product object.</param>
+        /// <param name="newIdNumber">The ID of the newly created product.</param>
+        /// <returns>An IResult containing the creation success response.</returns>
         public static IResult CreateSuccess(Product newProduct, int newIdNumber)
         {
             return Results.CreatedAtRoute("GetAccountById",
@@ -130,6 +127,9 @@ namespace ProductManagement.EntityModels.Helper
                 });
         }
 
+        /// <summary>Generates a new unique product ID number.</summary>
+        /// <param name="db">The database context for product operations.</param>
+        /// <returns>The next available product ID.</returns>
         public static int GetNewProductIdNumber( ProductManagementDb db)
         {
             return  db.Products
@@ -139,24 +139,3 @@ namespace ProductManagement.EntityModels.Helper
     }
 }
 
-
-
-// ***** below is to read the key:value from body - json content 
-//using StreamReader reader = new(context.Request.Body);
-//string jsonString = await reader.ReadToEndAsync();
-
-//using JsonDocument jsonDoc = JsonDocument.Parse(jsonString);
-//JsonElement root = jsonDoc.RootElement;
-
-//// Get keys from JSON object
-//List<string> keys = root.EnumerateObject()
-//    .Select(p => p.Name)
-//    .ToList();
-
-//List<JsonElement> values = root.EnumerateObject()
-//    .Select(p => p.Value)
-//    .ToList();
-
-
-//WriteLine($" ****************** keys: {string.Join(", ", keys)} ");
-//WriteLine($" ****************** values: {string.Join(", ", values)} ");

@@ -2,8 +2,9 @@
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using ProductManagement.EntityModels.JwtAuth;
 
-namespace ProductManagement.EntityModels.JwtAuth
+namespace ProductManagement.JwtAuth
 {
     public class TokenService : ITokenService
     {

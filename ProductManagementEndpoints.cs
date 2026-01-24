@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using static ProductManagement.EntityModels.Helper.Helper;
+using ProductManagement.EntityModels;
+using static ProductManagement.Helper.Helper;
 
-namespace ProductManagement.EntityModels;
+namespace ProductManagement;
 
 public class ProductManagementEndpoints
 {
