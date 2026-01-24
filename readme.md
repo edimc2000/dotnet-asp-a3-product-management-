@@ -1,7 +1,7 @@
 _AI - Deepseek was used in some parts of the codes. Those parts will have a comment about AI usage._
 
 
-# Product Management API - using ASP.NET
+# Product Management API (persistent version with a database) - using ASP.NET
 This is an API implementation using ASP.Net demonstrating API endpoints for basic product management.
 
 Operations: 
