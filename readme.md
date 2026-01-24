@@ -1,10 +1,24 @@
+_AI - Deepseek was used in some parts of the codes. Those parts will have a comment about AI usage._
 
 
+# Product Management API - using ASP.NET
+This is an API implementation using ASP.Net demonstrating API endpoints for basic product management.
 
-### Files and Folders
+Operations: 
+- **creating/registering a new product** (Create using HTTP method `POST`),  
+- **reading/searching for a product using the productId** (Retrieve using HTTP method `GET`), 
+- **fetching all products** (Retrieve using HTTP method `GET`), 
+- **deleting an account using the account Id** (Delete using HTTP method `DELETE`) 
+
+
+## Requirements
+
+- .NET SDK: Version 10.0.100
+- ANSI-capable terminal (optional, for colors)
+
+
+## Files and Folders
 <details> 
-
-
 
 
 ```
