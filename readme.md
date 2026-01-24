@@ -1,7 +1,7 @@
 _AI - Deepseek was used in some parts of the codes. Those parts will have a comment about AI usage._
 
 
-# Product Management API (persistent version with a database) - using ASP.NET
+# Product Management API (with a database) - using ASP.NET
 This is an API implementation using ASP.Net demonstrating API endpoints for basic product management.
 
 Operations: 
@@ -14,7 +14,9 @@ Operations:
 ## Requirements
 
 - .NET SDK: Version 10.0.100
+- SQL Lite for the database
 - ANSI-capable terminal (optional, for colors)
+- Modern browser
 
 
 ## Files and Folders
@@ -98,3 +100,20 @@ Program_root
          
 ```
 </details>
+
+## Build and Run (powershell)
+
+- Restore dependencies 
+	```
+	dotnet restore
+	```
+
+- Build
+	```
+	dotnet build
+	```
+
+- Run
+	```
+	dotnet run
+	```
