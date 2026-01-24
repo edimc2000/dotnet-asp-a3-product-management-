@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-namespace ProductManagement.AppBuilder;
+namespace ProductManagement.EntityModels.AppBuilder;
 
 /// <summary>Application builder extensions for database configuration.</summary>
 public static class AppBuilderDb

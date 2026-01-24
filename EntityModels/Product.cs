@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace ProductManagement;
+namespace ProductManagement.EntityModels;
 
 [Table("products")]
 public partial class Product

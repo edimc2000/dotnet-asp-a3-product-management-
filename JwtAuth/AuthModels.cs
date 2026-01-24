@@ -1,6 +1,6 @@
-﻿using static ProductManagement.Helper.Helper;
+﻿using static ProductManagement.EntityModels.Helper.Helper;
 
-namespace ProductManagement.JwtAuth;
+namespace ProductManagement.EntityModels.JwtAuth;
 
 public record LoginRequest(string Username, string Password);
 

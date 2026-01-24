@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
-using ProductManagement.JwtAuth;
-using ProductManagement.Data;
+using ProductManagement.EntityModels.JwtAuth;
+using ProductManagement.EntityModels.Data;
 
 
-namespace ProductManagement.JwtAuth;
+namespace ProductManagement.EntityModels.JwtAuth;
 
 public static class AppBuilderAuth
 {

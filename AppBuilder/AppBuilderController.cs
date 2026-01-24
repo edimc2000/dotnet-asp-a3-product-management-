@@ -1,4 +1,4 @@
-﻿namespace ProductManagement.AppBuilder;
+﻿namespace ProductManagement.EntityModels.AppBuilder;
 
 /// <summary>Application builder extensions for controller configuration.</summary>
 public static class AppBuilderController

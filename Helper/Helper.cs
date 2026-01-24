@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
-namespace ProductManagement.Helper
+namespace ProductManagement.EntityModels.Helper
 {
     internal partial class Helper
     {

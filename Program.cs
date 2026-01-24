@@ -1,8 +1,8 @@
-using ProductManagement.JwtAuth;
-using ProductManagement.Helper;
-using ProductManagement.AppBuilder;
+using ProductManagement.EntityModels.Helper;
+using ProductManagement.EntityModels.AppBuilder;
+using ProductManagement.EntityModels.JwtAuth;
 
-namespace ProductManagement;
+namespace ProductManagement.EntityModels;
 
 /// <summary>Main program class for the Product Management API.</summary>
 /// <para>Author: Eddie C.</para>

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-namespace ProductManagement.Helper;
+namespace ProductManagement.EntityModels.Helper;
 
 public static class DbMigration
 {

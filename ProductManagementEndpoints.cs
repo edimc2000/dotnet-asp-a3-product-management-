@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using static ProductManagement.Helper.Helper;
+using static ProductManagement.EntityModels.Helper.Helper;
 
-namespace ProductManagement;
+namespace ProductManagement.EntityModels;
 
 public class ProductManagementEndpoints
 {
@@ -45,8 +45,8 @@ public class ProductManagementEndpoints
     public static async Task<IResult> RegisterNewProduct
         (HttpContext context, ProductManagementDb db)
     {
-        (InputDataConverter? dataConverter, IResult? error) =
-            await TryReadJsonBodyAsync<InputDataConverter>(context.Request);
+        (Helper.Helper.InputDataConverter? dataConverter, IResult? error) =
+            await TryReadJsonBodyAsync<Helper.Helper.InputDataConverter>(context.Request);
 
         if (error != null)
             return error;
